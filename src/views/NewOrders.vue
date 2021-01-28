@@ -23,10 +23,16 @@ export default {
   data () {
     return {}
   },
-  computed: {},
-  beforeCreate () {},
+  computed: {
+    newOrders () {
+      return this.$store.state.newOrders
+    }
+  },
+  async created () {
+    await this.fetchNewOrders()
+  },
   methods: {
-    ...mapActions([]),
+    ...mapActions('order', ['fetchNewOrders']),
     functionOne () {}
   }
 }
