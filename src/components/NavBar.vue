@@ -11,9 +11,9 @@
         </v-btn>
       </div>-->
 
-      <!--:input-value="active"-->
       <v-bottom-navigation
         background-color="blue-grey"
+        :input-value="active"
       >
         <div
           v-for="(item, i) in navItems"
@@ -48,7 +48,7 @@
 export default {
   data () {
     return {
-      //active: true,
+      active: true,
       navItems: [
         { path: '/current-orders', name: 'current-orders', title: 'Current Orders' },
         { path: '/past-orders', name: 'past-orders', title: 'Past Orders' },

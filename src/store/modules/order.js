@@ -1,5 +1,5 @@
-import { apolloClient } from '@/apollo'
-import gql from 'graphql-tag'
+//import { apolloClient } from '@/apollo'
+//import gql from 'graphql-tag'
 
 // const newOrdersQuery = gql`{
 //   shisha_order(where: {status: {_eq: "new"}}) {
@@ -23,13 +23,13 @@ import gql from 'graphql-tag'
 //   }
 // }`
 
-const todoQuery = gql`{
-    todos(order_by: [{id: desc}]) {
-      id
-      text
-      is_completed
-    }
-}`
+//const todoQuery = gql`{
+//    todos(order_by: [{id: desc}]) {
+//      id
+//      text
+//      is_completed
+//    }
+//}`
 
 // const todoMutation = gql`
 //   mutation insert_todos($text: String!) {
@@ -79,18 +79,20 @@ const todoQuery = gql`{
 // const STORAGE_KEY = 'vuetify-todos'
 
 const state = {
-  // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
-  newOrders: [],
-  todos: []
+  newOrders: []
+}
+
+const getters = {
+  getNewOrders: (state) => state.newOrders
 }
 
 const mutations = {
   fetchNewOrders(state, newOrder) {
     state.newOrders = newOrder
   },
-  fetchTodos(state, todos) {
-    state.todos = todos
-  }
+  //fetchTodos(state, todos) {
+  //  state.todos = todos
+  //}
   // addTodo (state, todo) {
   //   state.todos.unshift(todo)
   // },
@@ -111,10 +113,10 @@ const actions = {
     console.log(arr)
     commit('fetchNewOrders', arr)
   },
-  async fetchTodos({ commit }) {
-    const { data } = await apolloClient.query({ query: todoQuery })
-    commit('fetchTodos', data.todos)
-  }
+  //async fetchTodos({ commit }) {
+  //  const { data } = await apolloClient.query({ query: todoQuery })
+  //  commit('fetchTodos', data.todos)
+  //}
   // async addTodo ({ commit }, text) {
   //   const { data } = await apolloClient.mutate({mutation: todoMutation, variables: {text: text}})
   //   console.log(data)
@@ -156,16 +158,17 @@ const actions = {
   // }
 }
 
-const plugins = [store => {
-  store.subscribe((mutation, { todos }) => {
-    // window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  })
-}]
+//const plugins = [store => {
+//  store.subscribe((mutation, { todos }) => {
+//    // window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+//  })
+//}]
 
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
-  actions,
-  plugins
+  actions
+  //plugins
 }
