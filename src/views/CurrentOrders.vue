@@ -11,18 +11,18 @@
       <!-- main -->
 
       <!-- footer -->
-      <footer-info />
+      <!--<footer-info />-->
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import FooterInfo from '@/components/FooterInfo.vue'
+//import FooterInfo from '@/components/FooterInfo.vue'
 
 export default {
   components: {
-    FooterInfo
+    //FooterInfo
   },
   data () {
     return {}

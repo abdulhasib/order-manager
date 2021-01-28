@@ -1,42 +1,54 @@
 <template>
-  <v-navigation-drawer
-    :mini-variant="true"
-    style="min-width: 100px!important;"
-    permanent="true"
-    app
-    floating
-  >
-    <v-divider />
-      <v-list>
-        <v-list-item
+  <div>
+    <div class="overflow-hidden">
+      <!--<div class="text-center mb-8">
+        <v-btn
+          color="deep-purple"
+          outlined
+          @click="active = !active"
+        >
+          Toggle Navigation
+        </v-btn>
+      </div>-->
+
+      <!--:input-value="active"-->
+      <v-bottom-navigation
+        background-color="blue-grey"
+      >
+        <div
           v-for="(item, i) in navItems"
           :key="i"
           exact
-          :to="item.path"
+          class="list"
         >
           <router-link
             class="nav-link"
             :to="{ path: item.path }"
           >
             <v-btn
-              id="logo"
+              class="button"
               href="#"
               text
               depressed
+              @click="showInput(i)"
             >
-              {{ item.title }}
+              <!--<v-icon>mdi-history</v-icon>-->
+              <span>
+                {{ item.title }}
+              </span>
             </v-btn>
           </router-link>
-        </v-list-item>
-      </v-list>
-  </v-navigation-drawer>
+        </div>
+      </v-bottom-navigation>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      drawer: null,
+      //active: true,
       navItems: [
         { path: '/current-orders', name: 'current-orders', title: 'Current Orders' },
         { path: '/past-orders', name: 'past-orders', title: 'Past Orders' },
@@ -44,22 +56,37 @@ export default {
       ]
     }
   },
-  computed: {},
-  methods: {}
+  computed: {
+  },
+  created () {
+    console.log(this.$route)
+  },
+  methods: {
+    showInput(data) {
+      console.log(data)
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .router-link-exact-active {
-    pointer-events: none;
-    text-decoration: none;
-  }
+  .router-link-active
+    color: none
+    a span
+      color: white
 
-  .v-btn {
-    padding: 0
-  }
+  .nav-link
+    display: flex
+    justify-content: center
+    align-items: center
+    text-decoration: none
+  
+  .list
+    width: 100%
+    padding: 0.5rem
 
-  .v-btn__content {
-    font-size: 0.8em;
-  }
+  .button 
+    height: 45px
+    font-size: 10px !important
+    padding: 0 !important
 </style>

@@ -2,12 +2,12 @@
   <v-app id="app">
     <v-main>
       <v-container id="container">
-        <nav-bar />
-        <v-content>
+        <v-main>
           <router-view />
-        </v-content>
+        </v-main>
       </v-container>
     </v-main>
+    <nav-bar />
   </v-app>
 </template>
 
