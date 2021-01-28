@@ -10,28 +10,15 @@
 <script>
 export default {
   props: {
-    headers: {
-      type: Array,
-      //required: true
-    },
-    tableData: {
-      type: Array,
-      //required: true
-    },
     table: {
       type: Object,
       required: true
     }
   },
-  data () {
-    return {
-
-    }
-  },
   computed: {
   },
   created () {
-    console.log(this.$props.table)
+    //console.log(this.$props.table)
   },
   methods: {
 

@@ -1,27 +1,16 @@
-//import { apolloClient } from '@/apollo'
-//import gql from 'graphql-tag'
+import { apolloClient } from '@/apollo'
+import gql from 'graphql-tag'
 
-// const newOrdersQuery = gql`{
-//   shisha_order(where: {status: {_eq: "new"}}) {
-//     created_at
-//     id
-//     is_outstanding
-//     modified_at
-//     status
-//     employee {
-//       first_name
-//       id
-//       role
-//       second_name
-//     }
-//     product {
-//       comments
-//       id
-//       name
-//       type
-//     }
-//   }
-// }`
+ const newOrdersQuery = gql`{
+  shisha_order(where: {status: {_eq: "new"}}) {
+    created_at
+    modified_at
+    id
+    employee {
+      first_name
+    }
+  }
+}`
 
 //const todoQuery = gql`{
 //    todos(order_by: [{id: desc}]) {
@@ -107,10 +96,10 @@ const mutations = {
 
 const actions = {
   async fetchNewOrders({ commit }) {
-    // const { data } = await apolloClient.query({query: newOrdersQuery})
-    // commit('fetchTodos', data.todos)
-    const arr = require('../../../data/newOrders.json')
-    commit('fetchNewOrders', arr)
+     const { data } = await apolloClient.query({query: newOrdersQuery})
+     commit('fetchNewOrders', data.shisha_order)
+    //const arr = require('../../../data/newOrders.json')
+    //commit('fetchNewOrders', arr)
   },
   //async fetchTodos({ commit }) {
   //  const { data } = await apolloClient.query({ query: todoQuery })

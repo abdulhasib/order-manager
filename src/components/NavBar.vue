@@ -59,17 +59,20 @@ export default {
   computed: {
   },
   created () {
-    console.log(this.$route)
+    //console.log(this.$route)
   },
   methods: {
-    showInput(data) {
-      console.log(data)
+    showInput () {
+      //console.log(data)
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+  .v-bottom-navigation
+    position: fixed
+
   .router-link-active
     color: none
     a span
