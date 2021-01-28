@@ -1,15 +1,15 @@
 <template>
   <v-layout row wrap>
     <v-flex text-xs-center>
-      <v-card class="mt-3" >
+      <v-card class="mt-3">
         <v-list>
-            <v-list-item v-for="(item, i) in navItems" exact :key="i" :to="item.path">
-                <router-link class="nav-link" :to="{ path: item.path }">
-                    <v-btn href="#" id="logo" text depressed>
-                        {{item.title}}
-                    </v-btn>
-                </router-link>
-            </v-list-item>
+          <v-list-item v-for="(item, i) in navItems" :key="i" exact :to="item.path">
+            <router-link class="nav-link" :to="{ path: item.path }">
+              <v-btn id="logo" href="#" text depressed>
+                {{ item.title }}
+              </v-btn>
+            </router-link>
+          </v-list-item>
         </v-list>
       </v-card>
     </v-flex>
@@ -27,8 +27,8 @@ export default {
       ]
     }
   },
-  methods: {},
-  computed: {}
+  computed: {},
+  methods: {}
 }
 </script>
 
