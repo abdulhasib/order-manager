@@ -110,7 +110,6 @@ const actions = {
     // const { data } = await apolloClient.query({query: newOrdersQuery})
     // commit('fetchTodos', data.todos)
     const arr = require('../../../data/newOrders.json')
-    console.log(arr)
     commit('fetchNewOrders', arr)
   },
   //async fetchTodos({ commit }) {
