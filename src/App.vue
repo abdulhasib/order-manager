@@ -3,7 +3,9 @@
     <v-main>
       <v-container id="container">
         <nav-bar />
-        <router-view />
+        <v-content>
+          <router-view />
+        </v-content>
       </v-container>
     </v-main>
   </v-app>
