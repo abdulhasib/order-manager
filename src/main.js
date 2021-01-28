@@ -4,11 +4,12 @@ import router from './router'
 import store from '@/store'
 import apolloProvider from './apollo'
 import './registerServiceWorker'
-import './vuetify'
+import vuetify from '@/plugins/vuetify'
 
 Vue.config.productionTip = false
 
 new Vue({
+  vuetify,
   router,
   store,
   apolloProvider,

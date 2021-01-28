@@ -85,10 +85,10 @@ const state = {
 }
 
 const mutations = {
-  fetchNewOrders (state, newOrder) {
+  fetchNewOrders(state, newOrder) {
     state.newOrders = newOrder
   },
-  fetchTodos (state, todos) {
+  fetchTodos(state, todos) {
     state.todos = todos
   }
   // addTodo (state, todo) {
@@ -104,15 +104,15 @@ const mutations = {
 }
 
 const actions = {
-  async fetchNewOrders ({ commit }) {
+  async fetchNewOrders({ commit }) {
     // const { data } = await apolloClient.query({query: newOrdersQuery})
     // commit('fetchTodos', data.todos)
     const arr = require('../../../data/newOrders.json')
     console.log(arr)
     commit('fetchNewOrders', arr)
   },
-  async fetchTodos ({ commit }) {
-    const { data } = await apolloClient.query({query: todoQuery})
+  async fetchTodos({ commit }) {
+    const { data } = await apolloClient.query({ query: todoQuery })
     commit('fetchTodos', data.todos)
   }
   // async addTodo ({ commit }, text) {
