@@ -17,7 +17,10 @@
 
 #container
   max-width: 550px
-  padding: 8px
+  padding: 0.5rem
+  overflow-y : auto
+  position:absolute
+  height : calc(100% - 56px) !important;
 </style>
 
 <script>
