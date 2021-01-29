@@ -6,7 +6,10 @@
     </template>
     <template v-else>
       <!-- main -->
-      <data-table 
+      <!--<data-table 
+        :table="table"
+      />-->
+      <orders-list 
         :table="table"
       />
     </template>
@@ -17,13 +20,15 @@
   import { mapGetters, mapActions } from 'vuex'
   import Loader from '@/components/Loader.vue'
   import HeaderTop from '@/components/HeaderTop.vue'
-  import DataTable from '@/components/DataTable.vue'
+  //import DataTable from '@/components/DataTable.vue'
+  import OrdersList from '@/components/OrdersList.vue'
 
   export default {
     components: {
       Loader,
       HeaderTop,
-      DataTable
+      //DataTable
+      OrdersList
     },
     data () {
       return {
@@ -63,4 +68,7 @@
 </script>
 
 <style lang="stylus">
+  .order-card
+      margin 1rem 0
+
 </style>

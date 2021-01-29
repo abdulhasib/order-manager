@@ -16,7 +16,6 @@
   background: #f5f5f5
 
 #container
-  max-width: 550px
   padding: 0.5rem
   overflow-y : auto
   position:absolute
