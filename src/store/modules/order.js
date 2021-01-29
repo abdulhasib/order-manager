@@ -1,5 +1,6 @@
 import { apolloClient } from '@/apollo'
 import gql from 'graphql-tag'
+import { formatDate } from '../../utils/dateTools';
 
  const newOrdersQuery = gql`{
   shisha_order(where: {status: {_eq: "new"}}) {
@@ -94,10 +95,20 @@ const mutations = {
   // }
 }
 
+
+
+
 const actions = {
   async fetchNewOrders({ commit }) {
-     const { data } = await apolloClient.query({query: newOrdersQuery})
-     commit('fetchNewOrders', data.shisha_order)
+     const { data: { shisha_order } } = await apolloClient.query({query: newOrdersQuery})
+     console.log(shisha_order)
+
+     const formattedShishaOrder = shisha_order.map(order => {
+       order.modified_at = formatDate(order.modified_at)
+       order.created_at = formatDate( order.created_at)
+       return order
+     })
+     commit('fetchNewOrders', formattedShishaOrder)
     //const arr = require('../../../data/newOrders.json')
     //commit('fetchNewOrders', arr)
   },
