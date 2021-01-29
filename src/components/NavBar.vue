@@ -83,20 +83,24 @@ export default {
     width 100%
     height 100%
 
-  .nav-container
-      &.active
-        background-color grey
-
   .nav-link
     text-decoration none
+    justify-content: center;
+    align-items: center;
+    display: flex !important
+    height 100%
+    a span
+      color #1e282d
 
   .router-link-active
     display block
     height 100%
-    background-color #668595
+    background-color #7491a0 
     a span
       color white
 
-  .button 
+  .v-btn 
     height 100% !important
+    width 100% !important
+    max-width: inherit !important
 </style>
