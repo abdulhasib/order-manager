@@ -1,31 +1,28 @@
 <template>
-  <v-layout
-    row
-    wrap
-  >
-    <v-flex text-xs-center>
-      <!-- header -->
-      <h1 class="">
-        Home
-      </h1>
+  <div>
+    <header-top :title="title" />
+    <template v-if="isloaded===false">
+      <loader />
+    </template>
+    <template v-else>
       <!-- main -->
-
-      <!-- footer -->
-      <!--<footer-info />-->
-    </v-flex>
-  </v-layout>
+    </template>
+  </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-//import FooterInfo from '@/components/FooterInfo.vue'
+import Loader from '@/components/Loader.vue'
 
 export default {
   components: {
-    //FooterInfo
+    Loader
   },
   data () {
-    return {}
+    return {
+      title: 'Home',
+      isloaded: false,
+    }
   },
   computed: {},
   beforeCreate () {},

@@ -1,21 +1,16 @@
 <template>
-  <v-layout
-    row
-    wrap
-  >
-    <v-flex text-xs-center>
-      <header-top :title="title" />
-      <template v-if="isloaded===false">
-        <loader />
-      </template>
-      <template v-else>
-        <!-- main -->
-        <data-table 
-          :table="table"
-        />
-      </template>
-    </v-flex>
-  </v-layout>
+  <div>
+    <header-top :title="title" />
+    <template v-if="isloaded===false">
+      <loader />
+    </template>
+    <template v-else>
+      <!-- main -->
+      <data-table 
+        :table="table"
+      />
+    </template>
+  </div>
 </template>
 
 <script>
@@ -32,8 +27,8 @@ export default {
   },
   data () {
     return {
-      isloaded: false,
       title: 'Past Orders',
+      isloaded: false,
       table: {
         headers: [
         {

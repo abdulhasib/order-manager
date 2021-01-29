@@ -12,7 +12,8 @@
       </div>-->
 
       <v-bottom-navigation
-        background-color="blue-grey"
+        :value="value"
+        grow
         :input-value="active"
       >
         <div
@@ -33,8 +34,8 @@
               :class="(item.path === path) ? 'active' : 'not-active'"
               @click="showInput(i)"
             >
-              <!--<v-icon>mdi-history</v-icon>-->
               <span>
+                <v-icon>{{ item.icon }}</v-icon>
                 {{ item.title }}
               </span>
             </v-btn>
@@ -52,9 +53,9 @@ export default {
       path: this.$route.path,
       active: true,
       navItems: [
-        { path: '/current-orders', name: 'current-orders', title: 'Current Orders' },
-        { path: '/past-orders', name: 'past-orders', title: 'Past Orders' },
-        { path: '/new-orders', name: 'new-orders', title: 'New Orders' }
+        { path: '/current-orders', name: 'current-orders', title: 'Current Orders', icon: 'mdi-snowman' },
+        { path: '/past-orders', name: 'past-orders', title: 'Past Orders', icon: 'mdi-archive' },
+        { path: '/new-orders', name: 'new-orders', title: 'New Orders', icon: 'mdi-new-box' }
       ]
     }
   },
@@ -85,19 +86,22 @@ export default {
 
   .nav-link
     text-decoration none
-    justify-content: center;
-    align-items: center;
     display: flex !important
+    justify-content: center
+    align-items: center
     height 100%
     a span
+      display flex
+      flex-direction column
       color #1e282d
 
   .router-link-active
     display block
     height 100%
-    background-color #7491a0 
-    a span
-      color white
+    background-color #40545e
+    a 
+      span
+        color white
 
   .v-btn 
     height 100% !important
