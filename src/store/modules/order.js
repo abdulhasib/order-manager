@@ -101,8 +101,6 @@ const mutations = {
 const actions = {
   async fetchNewOrders({ commit }) {
      const { data: { shisha_order } } = await apolloClient.query({query: newOrdersQuery})
-     console.log(shisha_order)
-
      const formattedShishaOrder = shisha_order.map(order => {
        order.modified_at = formatDate(order.modified_at)
        order.created_at = formatDate( order.created_at)

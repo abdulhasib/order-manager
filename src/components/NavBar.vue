@@ -19,7 +19,7 @@
           v-for="(item, i) in navItems"
           :key="i"
           exact
-          class="list"
+          class="nav-container"
         >
           <router-link
             class="nav-link"
@@ -30,6 +30,7 @@
               href="#"
               text
               depressed
+              :class="(item.path === path) ? 'active' : 'not-active'"
               @click="showInput(i)"
             >
               <!--<v-icon>mdi-history</v-icon>-->
@@ -48,6 +49,7 @@
 export default {
   data () {
     return {
+      path: this.$route.path,
       active: true,
       navItems: [
         { path: '/current-orders', name: 'current-orders', title: 'Current Orders' },
@@ -59,7 +61,7 @@ export default {
   computed: {
   },
   created () {
-    //console.log(this.$route)
+    console.log(this.$route.path)
   },
   methods: {
     showInput () {
@@ -70,26 +72,31 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  .v-application a 
+      color white
+      width 100%
+  
   .v-bottom-navigation
     position: fixed
 
-  .router-link-active
-    color: none
-    a span
-      color: white
+  .nav-container
+    width 100%
+    height 100%
+
+  .nav-container
+      &.active
+        background-color grey
 
   .nav-link
-    display: flex
-    justify-content: center
-    align-items: center
-    text-decoration: none
-  
-  .list
-    width: 100%
-    padding: 0.5rem
+    text-decoration none
+
+  .router-link-active
+    display block
+    height 100%
+    background-color #668595
+    a span
+      color white
 
   .button 
-    height: 45px
-    font-size: 10px !important
-    padding: 0 !important
+    height 100% !important
 </style>
