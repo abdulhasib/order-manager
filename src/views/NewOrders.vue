@@ -4,29 +4,36 @@
     wrap
   >
     <v-flex text-xs-center>
-      <!-- header -->
-      <h1 class="">
-        New Orders
-      </h1>
-
-      <!-- main -->
-      <data-table 
-        :table="table"
-      />
+      <header-top :title="title" />
+      <template v-if="isloaded===false">
+        <loader />
+      </template>
+      <template v-else>
+        <!-- main -->
+        <data-table 
+          :table="table"
+        />
+      </template>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Loader from '@/components/Loader.vue'
+import HeaderTop from '@/components/HeaderTop.vue'
 import DataTable from '@/components/DataTable.vue'
 
 export default {
   components: {
+    Loader,
+    HeaderTop,
     DataTable
   },
   data () {
     return {
+      isloaded: false,
+      title: 'New Orders',
       table: {
         headers: [
         {
@@ -56,6 +63,7 @@ export default {
     async fetch () {
       await this.fetchNewOrders()
       this.table.data = this.getNewOrders()
+      this.isloaded = true
     }
   }
 }

@@ -4,34 +4,67 @@
     wrap
   >
     <v-flex text-xs-center>
-      <!-- header -->
-      <h1 class="">
-        Current Orders
-      </h1>
-      <!-- main -->
-
-      <!-- footer -->
-      <!--<footer-info />-->
+      <header-top :title="title" />
+      <template v-if="isloaded===false">
+        <loader />
+      </template>
+      <template v-else>
+        <!-- main -->
+        <data-table 
+          :table="table"
+        />
+      </template>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-//import FooterInfo from '@/components/FooterInfo.vue'
+import { mapGetters, mapActions } from 'vuex'
+import Loader from '@/components/Loader.vue'
+import HeaderTop from '@/components/HeaderTop.vue'
+import DataTable from '@/components/DataTable.vue'
 
 export default {
   components: {
-    //FooterInfo
+    Loader,
+    HeaderTop,
+    DataTable
   },
   data () {
-    return {}
+    return {
+      isloaded: false,
+      title: 'Current Orders',
+      table: {
+        headers: [
+        {
+          text: 'Order ID',
+          align: 'start',
+          sortable: false,
+          value: 'id',
+          },
+          { text: 'Created At', value: 'created_at' },
+          { text: 'Modifed At', value: 'modified_at' },
+          { text: 'Assigned To', value: 'employee.first_name' },
+          { text: 'Status', value: 'status' }
+        ],
+        data: []
+      }
+    }
   },
-  computed: {},
-  beforeCreate () {},
+  computed: {
+
+  },
+  async created () {
+    this.fetch()
+  },
   methods: {
-    ...mapActions([]),
-    functionOne () {}
+    ...mapGetters('order', ['getCurrentOrders']),
+    ...mapActions('order', ['fetchCurrentrders']),
+    async fetch () {
+      //await this.fetchCurrentrders()
+      //this.table.data = this.getCurrentOrders()
+      //this.isloaded = true
+    }
   }
 }
 </script>
