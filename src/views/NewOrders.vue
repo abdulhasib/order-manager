@@ -5,17 +5,12 @@
       <loader />
     </template>
     <template v-else>
-      <!-- main -->
-      <!--<data-table 
-        :table="table"
-      />-->
-
       <div
         class="overall-info-card"
         outlined
       >
         <v-subheader
-          class="order-title font-weight-bold"
+          class="order-title font-weight-medium"
         >
           <span class="orders-length">
             {{ data.length }}
@@ -25,7 +20,6 @@
           </span>
         </v-subheader>
       </div>
-
       <orders-list 
         :data="data"
       />
