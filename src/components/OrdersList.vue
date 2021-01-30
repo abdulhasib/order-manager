@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(item, i) in table.data"
+      v-for="(item, i) in data"
       :key="i"
       exact
       class="cards-container"
@@ -48,8 +48,8 @@
 <script>
   export default {
     props: {
-      table: {
-        type: Object,
+      data: {
+        type: Array,
         required: true
       }
     },

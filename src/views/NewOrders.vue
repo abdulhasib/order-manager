@@ -10,7 +10,7 @@
         :table="table"
       />-->
       <orders-list 
-        :table="table"
+        :data="data"
       />
     </template>
   </div>
@@ -34,20 +34,7 @@
       return {
         title: 'New Orders',
         isloaded: false,
-        table: {
-          headers: [
-          {
-            text: 'Order ID',
-            align: 'start',
-            sortable: false,
-            value: 'id',
-            },
-            { text: 'Created At', value: 'created_at' },
-            { text: 'Modifed At', value: 'modified_at' },
-            { text: 'Assigned To', value: 'employee.first_name' }
-          ],
-          data: []
-        }
+        data: []
       }
     },
     computed: {
@@ -60,7 +47,7 @@
       ...mapActions('order', ['fetchNewOrders']),
       async fetch () {
         await this.fetchNewOrders()
-        this.table.data = this.getNewOrders()
+        this.data = this.getNewOrders()
         this.isloaded = true
       }
     }
