@@ -23,28 +23,28 @@
 </template>
 
 <script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true
+  export default {
+    props: {
+      title: {
+        type: String,
+        required: true
+      }
+    },
+    data () {
+      return {
+        isloaded: false,
+        isDisabled: false
+      }
+    },
+    computed: {
+    },
+    created () {
+      console.log('aa')
+    if (this.$route.path === '/') this.isDisabled = true
+    },
+    methods: {
     }
-  },
-  data () {
-    return {
-      isloaded: false,
-      isDisabled: false
-    }
-  },
-  computed: {
-  },
-  created () {
-    console.log('aa')
-   if (this.$route.path === '/') this.isDisabled = true
-  },
-  methods: {
   }
-}
 </script>
 
 <style lang="stylus" scoped>

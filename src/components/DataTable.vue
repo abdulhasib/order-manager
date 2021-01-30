@@ -8,24 +8,23 @@
 </template>
 
 <script>
-export default {
-  props: {
-    table: {
-      type: Object,
-      required: true
-    }
-  },
-  computed: {
-  },
-  created () {
-    //console.log(this.$props.table)
-  },
-  methods: {
+  export default {
+    props: {
+      table: {
+        type: Object,
+        required: true
+      }
+    },
+    computed: {
+    },
+    created () {
+      //console.log(this.$props.table)
+    },
+    methods: {
 
+    }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-
 </style>
