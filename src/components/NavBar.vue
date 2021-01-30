@@ -78,7 +78,12 @@ export default {
       width 100%
   
   .v-bottom-navigation
-    position: fixed
+    position:absolute; 
+    bottom:0px; 
+    height:200px; 
+    left:0px; 
+    right:0px; 
+    overflow:hidden;
 
   .nav-container
     width 100%

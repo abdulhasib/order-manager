@@ -1,7 +1,13 @@
 <template>
-  <h1 class="">
+  <v-toolbar
+    color="#40545e"
+    dark
+    flat
+  >
+  <v-toolbar-title class="headline">
     {{ title }}
-  </h1>
+  </v-toolbar-title>
+  </v-toolbar>
 </template>
 
 <script>
@@ -20,3 +26,12 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+  .v-toolbar
+    position: fixed
+    height 100%
+    width 100%
+    top 0px
+    overflow hidden
+</style>

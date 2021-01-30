@@ -16,10 +16,13 @@
   background: #f5f5f5
 
 #container
-  padding: 0.5rem
-  overflow-y : auto
+  padding: 0
   position:absolute
-  height : calc(100% - 56px) !important;
+  top 56px
+  bottom:56px;
+  left:0px
+  right:0px
+  overflow auto
 </style>
 
 <script>

@@ -65,5 +65,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+  .cards-container
+    padding 0 0.5rem
 </style>
