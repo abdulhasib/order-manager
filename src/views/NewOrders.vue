@@ -9,6 +9,23 @@
       <!--<data-table 
         :table="table"
       />-->
+
+      <div
+        class="overall-info-card"
+        outlined
+      >
+        <v-subheader
+          class="order-title font-weight-bold"
+        >
+          <span class="orders-length">
+            {{ data.length }}
+          </span> 
+          <span>
+            New Orders
+          </span>
+        </v-subheader>
+      </div>
+
       <orders-list 
         :data="data"
       />
@@ -55,6 +72,10 @@
 </script>
 
 <style lang="stylus">
-  .order-card
-      margin 1rem 0
+  .overall-info-card
+    margin 0.5rem 1rem 0 1rem
+    .order-title
+      padding 0 0.5rem
+      .orders-length
+        margin 0 0.25rem 0 0
 </style>
