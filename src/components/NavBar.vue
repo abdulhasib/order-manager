@@ -73,16 +73,16 @@
 </script>
 
 <style lang="stylus" scoped>
-  .v-application a 
+  .v-application a
       color white
       width 100%
-  
+
   .v-bottom-navigation
-    position:absolute; 
-    bottom:0px; 
-    height:200px; 
-    left:0px; 
-    right:0px; 
+    position:absolute;
+    bottom:0px;
+    height:200px;
+    left:0px;
+    right:0px;
     overflow:hidden;
 
   .nav-container
@@ -104,11 +104,11 @@
     display block
     height 100%
     background-color #40545e
-    a 
+    a
       span
         color white
 
-  .v-btn 
+  .v-btn
     height 100% !important
     width 100% !important
     max-width: inherit !important

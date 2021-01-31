@@ -14,13 +14,13 @@
         >
           <span class="orders-length">
             {{ data.length }}
-          </span> 
+          </span>
           <span>
             New Orders
           </span>
         </v-subheader>
       </div>
-      <orders-list 
+      <orders-list
         :data="data"
       />
     </template>

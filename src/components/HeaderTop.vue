@@ -4,11 +4,6 @@
     dark
     flat
   >
-    <v-toolbar-title class="headline font-weight-medium">
-      {{ title }}
-    </v-toolbar-title>
-    <v-spacer />
-
     <v-btn
       v-model="isDisabled"
       to="/"
@@ -16,6 +11,10 @@
     >
       <v-icon>mdi-home</v-icon>
     </v-btn>
+    <v-toolbar-title class="headline font-weight-medium">
+      {{ title }}
+    </v-toolbar-title>
+    <v-spacer />
     <v-btn icon>
       <v-icon>mdi-dots-vertical</v-icon>
     </v-btn>

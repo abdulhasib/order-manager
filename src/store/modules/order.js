@@ -79,7 +79,7 @@ const getters = {
 const mutations = {
   fetchNewOrders(state, newOrder) {
     state.newOrders = newOrder
-  },
+  }
   //fetchTodos(state, todos) {
   //  state.todos = todos
   //}
@@ -109,7 +109,7 @@ const actions = {
      commit('fetchNewOrders', formattedShishaOrder)
     //const arr = require('../../../data/newOrders.json')
     //commit('fetchNewOrders', arr)
-  },
+  }
   //async fetchTodos({ commit }) {
   //  const { data } = await apolloClient.query({ query: todoQuery })
   //  commit('fetchTodos', data.todos)

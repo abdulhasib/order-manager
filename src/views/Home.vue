@@ -23,7 +23,7 @@
     data () {
       return {
         title: 'Home',
-        isloaded: false,
+        isloaded: false
       }
     },
     computed: {

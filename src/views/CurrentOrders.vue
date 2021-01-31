@@ -6,7 +6,7 @@
     </template>
     <template v-else>
       <!-- main -->
-      <data-table 
+      <data-table
         :table="table"
       />
     </template>
@@ -35,7 +35,7 @@
             text: 'Order ID',
             align: 'start',
             sortable: false,
-            value: 'id',
+            value: 'id'
             },
             { text: 'Created At', value: 'created_at' },
             { text: 'Modifed At', value: 'modified_at' },

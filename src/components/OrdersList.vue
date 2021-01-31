@@ -20,7 +20,7 @@
         <v-card-text
           class="order-text"
         >
-          Assigned to: 
+          Assigned to:
           <span v-if="'employee' in item && item.employee !== null">
             {{ item.employee.first_name }}
           </span>
@@ -67,7 +67,7 @@
 <style lang="stylus" scoped>
   .order-card
       margin 1rem 0
-      
+
   .cards-container
     padding 0 0.5rem
 </style>
