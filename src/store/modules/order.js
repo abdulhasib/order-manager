@@ -1,5 +1,5 @@
 import { apolloClient } from '@/plugins/apollo'
-import { formatDate } from '../../utils/dateTools'
+import DateTools from '../../utils/date-tools'
 import { newOrdersQuery } from '@/queries/orders'
 
 const state = {
@@ -20,8 +20,8 @@ const actions = {
   async fetchNewOrders({ commit }) {
      const { data: { shisha_order } } = await apolloClient.query({query: newOrdersQuery})
      const formattedShishaOrder = shisha_order.map(order => {
-       order.modified_at = formatDate(order.modified_at)
-       order.created_at = formatDate( order.created_at)
+       order.modified_at = DateTools.formatDate(order.modified_at)
+       order.created_at = DateTools.formatDate( order.created_at)
        return order
      })
      commit('fetchNewOrders', formattedShishaOrder)
