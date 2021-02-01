@@ -1,21 +1,11 @@
 <template>
-  <v-card
-    class="order-card"
-    outlined
-  >
-    <v-card-title
-      class="order-title"
-    >
+  <v-card class="order-card" outlined>
+    <v-card-title class="order-title">
       Customer Details
     </v-card-title>
-    <div
-      class="customer-details-form-section-container"
-    >
+    <div class="customer-details-form-section-container">
       <v-row>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.firstname"
             :rules="nameRules"
@@ -23,10 +13,7 @@
             required
           />
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.lastname"
             :rules="nameRules"
@@ -34,10 +21,7 @@
             required
           />
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.number"
             :rules="numberRules"
@@ -47,10 +31,7 @@
           />
         </v-col>
         <v-subheader>Address</v-subheader>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.line1"
             :rules="numberRules"
@@ -58,10 +39,7 @@
             required
           />
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.line2"
             :rules="numberRules"
@@ -69,10 +47,7 @@
             required
           />
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.city"
             :rules="numberRules"
@@ -80,10 +55,7 @@
             required
           />
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.postcode"
             :rules="numberRules"
@@ -97,24 +69,22 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      customerDetails: {
-        type: Object,
-        required: true
-      }
-    },
-    computed: {
-    },
-    created () {
-      //console.log(this.$props.table)
-    },
-    methods: {
-    }
-  }
+	export default {
+		props: {
+			customerDetails: {
+				type: Object,
+				required: true
+			}
+		},
+		computed: {},
+		created() {
+			//console.log(this.$props.table)
+		},
+		methods: {}
+	}
 </script>
 
 <style lang="stylus" scoped>
-  .customer-details-form-section-container
-    padding 1rem
+	.customer-details-form-section-container
+		padding 1rem
 </style>

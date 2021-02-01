@@ -5,19 +5,19 @@ import createOrderRoutes from './create-order'
 import currentOrdersRoutes from './current-orders'
 import completedOrdersRoutes from './completed-orders'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'app-home',
-    component: () => import('@/components/app/home/index.vue')
-  },
-  ...createOrderRoutes,
-  ...currentOrdersRoutes,
-  ...completedOrdersRoutes
+	{
+		path: '/',
+		name: 'app-home',
+		component: () => import('@/components/app/home/index.vue')
+	},
+	...createOrderRoutes,
+	...currentOrdersRoutes,
+	...completedOrdersRoutes
 ]
 
-const router = new VueRouter({ mode: 'history', routes });
+const router = new VueRouter({ mode: 'history', routes })
 
-export default router;
+export default router

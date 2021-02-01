@@ -10,13 +10,13 @@ export default new Vuetify({
 		iconfont: 'mdi'
 	},
 	theme: {
-    themes: {
-      light: {
-        primary: '#40545e',
-        secondary: colors.purple.darken4,
-        accent: colors.shades.black,
-        error: colors.red.accent3
-      }
-    }
-  }
+		themes: {
+			light: {
+				primary: '#40545e',
+				secondary: colors.purple.darken4,
+				accent: colors.shades.black,
+				error: colors.red.accent3
+			}
+		}
+	}
 })

@@ -9,12 +9,11 @@ import vuetify from '@/plugins/vuetify'
 Vue.config.productionTip = false
 
 new Vue({
-  vuetify,
-  router,
-  store,
-  // apolloProvider,
-  render: h => h(App)
+	vuetify,
+	router,
+	store,
+	// apolloProvider,
+	render: (h) => h(App)
 }).$mount('#app')
-
 
 // classes mjs
