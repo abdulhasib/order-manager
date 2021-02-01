@@ -7,12 +7,17 @@ import completedOrdersRoutes from './completed-orders'
 
 Vue.use(VueRouter);
 
-const router = new Router({
-  routes: [
-    ...createOrderRoutes,
-    ...currentOrdersRoutes,
-    ...completedOrdersRoutes
-  ]
-})
+const routes = [
+  {
+    path: '/',
+    name: 'app-home',
+    component: () => import('@/components/app/home/index.vue')
+  },
+  ...createOrderRoutes,
+  ...currentOrdersRoutes,
+  ...completedOrdersRoutes
+]
 
-export default router
+const router = new VueRouter({ mode: 'history', routes });
+
+export default router;
