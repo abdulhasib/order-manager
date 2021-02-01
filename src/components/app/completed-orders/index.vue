@@ -5,7 +5,6 @@
       <loader />
     </template>
     <template v-else>
-      <!-- main -->
       <data-table
         :table="table"
       />
@@ -15,9 +14,9 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import Loader from '@/components/Loader.vue'
-  import HeaderTop from '@/components/HeaderTop.vue'
-  import DataTable from '@/components/DataTable.vue'
+  import Loader from '@/components/common/loader.vue'
+  import HeaderTop from '@/components/common/header.vue'
+  import DataTable from '@/components/common/data-table.vue'
 
   export default {
     components: {

@@ -15,9 +15,29 @@
       {{ title }}
     </v-toolbar-title>
     <v-spacer />
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
+    <v-menu
+      bottom
+      left
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          icon
+          v-bind="attrs"
+          transition="slide-x-transition"
+          v-on="on"
+        >
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-toolbar>
 </template>
 
@@ -31,8 +51,10 @@
     },
     data () {
       return {
-        isloaded: false,
-        isDisabled: false
+        isDisabled: false,
+        items: [
+          { title: 'Sign out' }
+        ]
       }
     },
     computed: {

@@ -29,10 +29,10 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import Loader from '@/components/Loader.vue'
-  import HeaderTop from '@/components/HeaderTop.vue'
+  import Loader from '@/components/common/loader.vue'
+  import HeaderTop from '@/components/common/header.vue'
   //import DataTable from '@/components/DataTable.vue'
-  import OrdersList from '@/components/OrdersList.vue'
+  import OrdersList from './orders-list.vue'
 
   export default {
     components: {

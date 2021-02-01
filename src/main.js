@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from '@/store'
-import apolloProvider from './apollo'
+// import apolloProvider from '@/plugins/apollo'
 import './registerServiceWorker'
 import vuetify from '@/plugins/vuetify'
 
@@ -12,6 +12,9 @@ new Vue({
   vuetify,
   router,
   store,
-  apolloProvider,
+  // apolloProvider,
   render: h => h(App)
 }).$mount('#app')
+
+
+// classes mjs

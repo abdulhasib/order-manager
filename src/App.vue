@@ -26,7 +26,7 @@
 </style>
 
 <script>
-  import NavBar from '@/components/NavBar.vue'
+  import NavBar from '@/components/common/navbar.vue'
 
   export default {
     components: {

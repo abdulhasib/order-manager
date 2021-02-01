@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import CurrentOrders from './views/CurrentOrders'
-import PastOrders from './views/PastOrders.vue'
-import NewOrders from './views/NewOrders.vue'
+import AppHome from '@/components/app/home/index.vue';
 
 Vue.use(Router)
 
@@ -12,27 +9,23 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      props: true
+      name: 'app-home',
+      component: AppHome
+    },
+    {
+      path: '/create-order',
+      name: 'app-create-order',
+      component: () => import('@/components/app/create-order/index.vue')
     },
     {
       path: '/current-orders',
       name: 'Current Orders',
-      component: CurrentOrders,
-      props: true
+      component: () => import('@/components/app/current-orders/index.vue')
     },
     {
-      path: '/past-orders',
-      name: 'Past Orders',
-      component: PastOrders,
-      props: true
-    },
-    {
-      path: '/new-orders',
-      name: 'New Orders',
-      component: NewOrders,
-      props: true
+      path: '/completed-orders',
+      name: 'Completed Orders',
+      component: () => import('@/components/app/completed-orders/index.vue')
     }
   ]
 })

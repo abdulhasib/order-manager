@@ -53,9 +53,9 @@
         path: this.$route.path,
         active: true,
         navItems: [
-          { path: '/current-orders', name: 'current-orders', title: 'Current Orders', icon: 'mdi-snowman' },
-          { path: '/past-orders', name: 'past-orders', title: 'Past Orders', icon: 'mdi-archive' },
-          { path: '/new-orders', name: 'new-orders', title: 'New Orders', icon: 'mdi-new-box' }
+          { path: '/create-order', name: 'current-order', title: 'Create Order', icon: 'mdi-snowman' },
+          { path: '/current-orders', name: 'current-orders', title: 'Current Orders', icon: 'mdi-new-box' },
+          { path: '/completed-orders', name: 'completed-orders', title: 'Completed Orders', icon: 'mdi-archive' }
         ]
       }
     },
