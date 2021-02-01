@@ -1,9 +1,4 @@
 export default class DateTools {
-	/**
-	 * @static @name filepathToComponentName
-	 * @description TODO
-	 * @return {TODO} TODO
-	 */
 	static formatDate(dateString) {
     const date = new Date(dateString)
     const newDate = date.toLocaleDateString(
