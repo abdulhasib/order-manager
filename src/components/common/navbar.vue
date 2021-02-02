@@ -11,7 +11,7 @@
 				</v-btn>
 			</div>-->
 
-      <v-bottom-navigation :value="value" grow :input-value="active">
+      <v-bottom-navigation grow :input-value="active">
         <div v-for="(item, i) in navItems" :key="i" exact class="nav-container">
           <router-link class="nav-link" :to="{ path: item.path }">
             <v-btn
@@ -20,7 +20,6 @@
               text
               depressed
               :class="item.path === path ? 'active' : 'not-active'"
-              @click="showInput(i)"
             >
               <span>
                 <v-icon>{{ item.icon }}</v-icon>
@@ -64,13 +63,9 @@
 		},
 		computed: {},
 		created() {
-			console.log(this.$route.path)
+			// console.log(this.$route.path)
 		},
-		methods: {
-			showInput() {
-				//console.log(data)
-			}
-		}
+		methods: {}
 	}
 </script>
 

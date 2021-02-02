@@ -46,11 +46,11 @@
 			this.fetch()
 		},
 		methods: {
-			...mapGetters('order', ['getNewOrders']),
-			...mapActions('order', ['fetchNewOrders']),
+			...mapGetters('order', ['getcurrentOrders']),
+			...mapActions('order', ['fetchCurrentOrders']),
 			async fetch() {
-				await this.fetchNewOrders()
-				this.data = this.getNewOrders()
+				await this.fetchCurrentOrders()
+				this.data = this.getcurrentOrders()
 				this.isloaded = true
 			}
 		}

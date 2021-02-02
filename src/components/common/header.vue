@@ -38,7 +38,6 @@
 		},
 		computed: {},
 		created() {
-			console.log('aa')
 			if (this.$route.path === '/') this.isDisabled = true
 		},
 		methods: {}

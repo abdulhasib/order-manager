@@ -8,59 +8,59 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.firstname"
-            :rules="nameRules"
             label="First name"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.lastname"
-            :rules="nameRules"
             label="Last name"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.number"
-            :rules="numberRules"
             :counter="11"
             label="Phone Number"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-subheader>Address</v-subheader>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.line1"
-            :rules="numberRules"
             label="Address 1"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.line2"
-            :rules="numberRules"
             label="Address 2"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.city"
-            :rules="numberRules"
             label="City"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="customerDetails.address.postcode"
-            :rules="numberRules"
             label="Postcode"
             required
+            @input="updateInput('firstname', $event)"
           />
         </v-col>
       </v-row>
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		props: {
 			customerDetails: {
@@ -80,7 +82,14 @@
 		created() {
 			//console.log(this.$props.table)
 		},
-		methods: {}
+		methods: {
+			// ...mapGetters('order', ['getCreateOrderForm']),
+			...mapActions('order', ['updateForm']),
+			updateInput(fieldName, value) {
+				const updatedForm = { fieldName, value }
+				this.updateForm(updatedForm)
+			}
+		}
 	}
 </script>
 

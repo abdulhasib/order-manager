@@ -20,4 +20,11 @@ const routes = [
 
 const router = new VueRouter({ mode: 'history', routes })
 
+// router.beforeEach((to, from, next) => {
+// 	// for (var i = 0; i < localStorage.length; i++) {
+// 	// 	console.log(localStorage.getItem(localStorage.key(i)))
+// 	// }
+// 	next()
+// })
+
 export default router

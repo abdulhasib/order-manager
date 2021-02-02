@@ -1,66 +1,35 @@
 <template>
   <div>
     <header-top :title="title" />
-    <template v-if="isloaded === false">
-      <loader />
-    </template>
-    <template v-else>
-      <v-form v-model="valid">
-        <v-container>
-          <customer-details :customer-details="order.customerDetails" />
-          <product-details :product-details="order.productDetails" />
-        </v-container>
-      </v-form>
-    </template>
+    <div>{{ createOrderForm }}</div>
+    <!-- <v-form> -->
+    <v-container>
+      <customer-details-form-section :customer-details="createOrderForm.customerDetails" />
+      <product-details-form-section :product-details="createOrderForm.productDetails" />
+    </v-container>
+    <!-- </v-form> -->
   </div>
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex'
-	import Loader from '@/components/common/loader.vue'
+	import { mapState } from 'vuex'
 	import HeaderTop from '@/components/common/header.vue'
-	import CustomerDetails from './customer-details.vue'
-	import ProductDetails from './product-details.vue'
+	import CustomerDetailsFormSection from './customer-details-form-section.vue'
+	import ProductDetailsFormSection from './product-details-form-section.vue'
 
 	export default {
 		components: {
-			Loader,
 			HeaderTop,
-			CustomerDetails,
-			ProductDetails
+			CustomerDetailsFormSection,
+			ProductDetailsFormSection
 		},
 		data() {
 			return {
-				title: 'Create Order',
-				isloaded: false,
-				order: {
-					customerDetails: {
-						firstname: '',
-						lastname: '',
-						number: '',
-						address: {
-							line1: '',
-							line2: '',
-							city: '',
-							postcode: ''
-						}
-					},
-					productDetails: {}
-				}
+				title: 'Create Order'
 			}
 		},
-		computed: {},
-		async created() {
-			this.fetch()
-		},
-		methods: {
-			...mapGetters('order', ['getCurrentOrders']),
-			...mapActions('order', ['fetchCurrentrders']),
-			async fetch() {
-				//await this.fetchCurrentrders()
-				//this.table.data = this.getCurrentOrders()
-				this.isloaded = true
-			}
+		computed: {
+			...mapState('order', ['createOrderForm'])
 		}
 	}
 </script>

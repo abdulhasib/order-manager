@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const newOrdersQuery = gql`
+export const currentOrdersQuery = gql`
 	{
 		shisha_order(where: { status: { _eq: "new" } }) {
 			created_at
