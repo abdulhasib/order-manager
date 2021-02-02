@@ -86,7 +86,7 @@
 			// ...mapGetters('order', ['getCreateOrderForm']),
 			...mapActions('order', ['updateForm']),
 			updateInput(fieldName, value) {
-				const updatedForm = { fieldName, value }
+				const updatedForm = { section: 'customerDetails', fieldName, value }
 				this.updateForm(updatedForm)
 			}
 		}

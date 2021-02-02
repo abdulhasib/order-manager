@@ -30,8 +30,8 @@ const mutations = {
 	fetchCurrentOrders(state, newOrder) {
 		state.currentOrders = newOrder
 	},
-	updateForm(fieldName, value) {
-		state.createOrderForm.customerDetails.firstname = value
+	updateForm(state, section, fieldName, value) {
+		state.createOrderForm[section][fieldName] = value
 	}
 }
 
@@ -50,8 +50,7 @@ const actions = {
 		//commit('fetchcurrentOrders', arr)
 	},
 	async updateForm({ commit }, updatedForm) {
-		console.log(updatedForm.value)
-		commit('updateForm', updatedForm.fieldName, updatedForm.value)
+		commit('updateForm', updatedForm.section, updatedForm.fieldName, updatedForm.value)
 	}
 }
 
