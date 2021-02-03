@@ -16,23 +16,25 @@ const state = {
 				postcode: ''
 			}
 		},
-		productDetails: [],
-		secondProductDetails: []
+		productDetails: [
+			{
+				selected: ['Standard 1', 'Standard 2', 'Standard 3']
+			},
+			{
+				selected: ['Standard 1', 'Standard 2', 'Standard 4']
+			}
+		]
 	}
 }
 
 const getters = {
-	getcurrentOrders: (state) => state.currentOrders,
+	getCurrentOrders: (state) => state.currentOrders,
 	getCreateOrderForm: (state) => state.createOrderForm
 }
 
 const mutations = {
-	fetchCurrentOrders(state, newOrder) {
-		state.currentOrders = newOrder
-	},
-	updateForm(state, section, fieldName, value) {
-		state.createOrderForm[section][fieldName] = value
-	}
+	setCurrentOrders: (state, newOrder) => state.currentOrders = newOrder,
+	setForm: (state, section, fieldName, value) => state.createOrderForm[section][fieldName] = value
 }
 
 const actions = {
@@ -45,12 +47,17 @@ const actions = {
 			order.created_at = DateTools.formatDate(order.created_at)
 			return order
 		})
-		commit('fetchCurrentOrders', formattedShishaOrder)
+		commit('setCurrentOrders', formattedShishaOrder)
 		//const arr = require('../../../data/currentOrders.json')
 		//commit('fetchcurrentOrders', arr)
 	},
 	async updateForm({ commit }, updatedForm) {
-		commit('updateForm', updatedForm.section, updatedForm.fieldName, updatedForm.value)
+		commit(
+			'setForm',
+			updatedForm.section,
+			updatedForm.fieldName,
+			updatedForm.value
+		)
 	}
 }
 

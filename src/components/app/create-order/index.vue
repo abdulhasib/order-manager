@@ -1,11 +1,15 @@
 <template>
   <div>
     <header-top :title="title" />
-    <div>{{ createOrderForm }}</div>
+    <!-- {{ createOrderForm.productDetails }} -->
     <!-- <v-form> -->
     <v-container>
-      <customer-details-form-section :customer-details="createOrderForm.customerDetails" />
-      <product-details-form-section :product-details="createOrderForm.productDetails" />
+      <customer-details-form-section
+        :customer-details="createOrderForm.customerDetails"
+      />
+      <product-details-form-section
+        :product-details="createOrderForm.productDetails"
+      />
     </v-container>
     <!-- </v-form> -->
   </div>

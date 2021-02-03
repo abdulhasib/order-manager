@@ -1,6 +1,11 @@
 <template v-if="isloaded === true">
   <div class="loading-container">
-    <v-progress-circular :size="80" :width="8" color="blue-grey" indeterminate />
+    <v-progress-circular
+      :size="80"
+      :width="8"
+      color="blue-grey"
+      indeterminate
+    />
   </div>
 </template>
 

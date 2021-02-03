@@ -1,6 +1,7 @@
 <template>
   <v-card class="order-card" outlined>
     <v-card-title class="order-title">
+      {{ addedProducts.length }}
       Product Details
     </v-card-title>
     <div class="product-details-form-section-container">
@@ -8,7 +9,11 @@
         <v-col cols="12" md="4">
           <v-card-text class="pt-4">
             <div>
-              <v-expand-transition v-for="(product, i) in addedProducts" :key="i" appear>
+              <v-expand-transition
+                v-for="(product, i) in addedProducts"
+                :key="i"
+                appear
+              >
                 <v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
                   <v-container>
                     <div class="card-title-container">
@@ -23,14 +28,28 @@
                       <v-col cols="12" md="4">
                         <v-container class="px-0" fluid>
                           Standard
-                          <div v-for="(standardProduct, i) in standardProductsList" :key="i">
-                            <v-checkbox :label="standardProduct.label" />
+                          <div
+                            v-for="(standardProduct,
+                                    index) in standardProductsList"
+                            :key="index"
+                          >
+                            <v-checkbox
+                              v-model="product.selected[index]"
+                              :label="standardProduct.label"
+                            />
                           </div>
                         </v-container>
                         <v-container class="px-0" fluid>
                           Premium
-                          <div v-for="(premiumProduct, i) in premiumProductsList" :key="i">
-                            <v-checkbox :label="premiumProduct.label" />
+                          <div
+                            v-for="(premiumProduct,
+                                    index) in premiumProductsList"
+                            :key="index"
+                          >
+                            <v-checkbox
+                              v-model="product.selected[index]"
+                              :label="premiumProduct.label"
+                            />
                           </div>
                         </v-container>
                       </v-col>
@@ -55,6 +74,8 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		props: {
 			productDetails: {
@@ -64,7 +85,7 @@
 		},
 		data() {
 			return {
-				addedProducts: [],
+				addedProducts: this.productDetails,
 				standardProductsList: [
 					{ label: 'Standard 1' },
 					{ label: 'Standard 2' },
@@ -85,13 +106,24 @@
 		},
 		methods: {
 			newProduct() {
+        console.log(this.addedProducts)
 				this.addedProducts.push({
-					option: ''
+					selected: []
 				})
 			},
 			removeProduct(i) {
 				console.log(i)
 				this.addedProducts.splice(i, 1)
+			},
+			isChecked(product, label) {
+				console.log(product.selected.includes(label))
+				return product.selected.includes(label)
+			},
+			...mapActions('order', ['updateForm']),
+			updateInput(fieldName, value) {
+        console.log('asas',value)
+				const updatedForm = { section: 'productDetails', fieldName, value }
+				this.updateForm(updatedForm)
 			}
 		}
 	}

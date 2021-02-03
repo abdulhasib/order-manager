@@ -18,7 +18,7 @@
             v-model="customerDetails.lastname"
             label="Last name"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('lastname', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
@@ -27,7 +27,7 @@
             :counter="11"
             label="Phone Number"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('number', $event)"
           />
         </v-col>
         <v-subheader>Address</v-subheader>
@@ -36,7 +36,7 @@
             v-model="customerDetails.address.line1"
             label="Address 1"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('address.line1', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
@@ -44,7 +44,7 @@
             v-model="customerDetails.address.line2"
             label="Address 2"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('address.line2', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
@@ -52,7 +52,7 @@
             v-model="customerDetails.address.city"
             label="City"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('address.city', $event)"
           />
         </v-col>
         <v-col cols="12" md="4">
@@ -60,7 +60,7 @@
             v-model="customerDetails.address.postcode"
             label="Postcode"
             required
-            @input="updateInput('firstname', $event)"
+            @input="updateInput('address.postcode', $event)"
           />
         </v-col>
       </v-row>

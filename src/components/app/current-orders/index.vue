@@ -8,20 +8,20 @@
       <div class="overall-info-card" outlined>
         <v-subheader class="order-title font-weight-medium">
           <span class="orders-length">
-            {{ data.length }}
+            {{ currentOrders.length }}
           </span>
           <span>
             New Orders
           </span>
         </v-subheader>
       </div>
-      <orders-list :data="data" />
+      <orders-list :data="currentOrders" />
     </template>
   </div>
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import Loader from '@/components/common/loader.vue'
 	import HeaderTop from '@/components/common/header.vue'
 	//import DataTable from '@/components/DataTable.vue'
@@ -41,17 +41,17 @@
 				data: []
 			}
 		},
-		computed: {},
+		computed: {
+			...mapState('order', ['currentOrders'])
+		},
 		async created() {
-			this.fetch()
+			await this.fetch()
+			this.isloaded = true
 		},
 		methods: {
-			...mapGetters('order', ['getcurrentOrders']),
 			...mapActions('order', ['fetchCurrentOrders']),
 			async fetch() {
 				await this.fetchCurrentOrders()
-				this.data = this.getcurrentOrders()
-				this.isloaded = true
 			}
 		}
 	}
