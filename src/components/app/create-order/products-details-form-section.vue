@@ -74,14 +74,14 @@
 
 	export default {
 		props: {
-			productDetails: {
+			productsDetails: {
 				type: Array,
 				required: true
 			}
 		},
 		data() {
 			return {
-				addedProducts: this.productDetails,
+				addedProducts: this.productsDetails,
 				standardProductsList: [
 					{ label: 'Standard 1' },
 					{ label: 'Standard 2' },

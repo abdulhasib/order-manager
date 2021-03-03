@@ -16,11 +16,18 @@ const state = {
 				postcode: ''
 			}
 		},
-		productDetails: [
+		productsDetails: [
 			{
 				selected: {
 					standard: [],
 					premium: []
+				}
+			}
+		],
+		drinksDetails: [
+			{
+				selected: {
+					drinks: []
 				}
 			}
 		]
@@ -36,7 +43,8 @@ const mutations = {
 	setCurrentOrders: (state, newOrder) => (state.currentOrders = newOrder),
 	setForm: (state, section, fieldName, value) =>
 		(state.createOrderForm[section][fieldName] = value),
-	setProducts: (state, updatedForm) => state.createOrderForm.productDetails = updatedForm
+	setProducts: (state, updatedForm) => state.createOrderForm.productsDetails = updatedForm,
+	setDrinks: (state, updatedDrinks) => state.createOrderForm.drinksDetails = updatedDrinks
 }
 
 const actions = {
@@ -63,6 +71,9 @@ const actions = {
 	},
 	async updateProducts({ commit }, updatedProducts) {
 		commit('setProducts', updatedProducts)
+	},
+	async updateDrinks({ commit }, updatedDrinks) {
+		commit('setProducts', updatedDrinks)
 	}
 }
 
