@@ -10,6 +10,9 @@
 			<products-details-form-section
 				:products-details="createOrderForm.productsDetails"
 			/>
+			<drinks-details-form-section
+				:drinks-details="createOrderForm.drinksDetails"
+			/>
 		</v-container>
 		<!-- </v-form> -->
 	</div>
@@ -19,13 +22,15 @@
 	import { mapState } from 'vuex'
 	import HeaderTop from '@/components/common/header.vue'
 	import CustomerDetailsFormSection from './customer-details-form-section.vue'
-	import productsDetailsFormSection from './products-details-form-section.vue'
+	import ProductsDetailsFormSection from './products-details-form-section.vue'
+	import DrinksDetailsFormSection from './drinks-details-form-section.vue'
 
 	export default {
 		components: {
 			HeaderTop,
 			CustomerDetailsFormSection,
-			productsDetailsFormSection
+			ProductsDetailsFormSection,
+			DrinksDetailsFormSection
 		},
 		data() {
 			return {

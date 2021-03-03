@@ -32,7 +32,7 @@
 														v-for="(standardProduct,
 														index) in standardProductsList"
 														:key="index"
-														v-model="product.selected.standard[index]"
+														v-model="product.selected.standard"
 														:label="standardProduct.label"
 														:value="standardProduct.label"
 													/>
@@ -43,7 +43,7 @@
 														v-for="(premiumProduct,
 														index) in premiumProductsList"
 														:key="index"
-														v-model="product.selected.premium[index]"
+														v-model="product.selected.premium"
 														:label="premiumProduct.label"
 														:value="premiumProduct.label || ''"
 													/>
@@ -96,27 +96,25 @@
 				]
 			}
 		},
-    watch: {
-      addedProducts:{
-        handler(val) {
-          this.updateProducts(val)
-        },
-        deep: true
-      }
-    },
-		computed: {},
-		created() {
-			//console.log(this.$props.table)
+		watch: {
+			addedProducts: {
+				handler(val) {
+					this.updateProducts(val)
+				},
+				deep: true
+			}
 		},
+		computed: {},
+		created() {},
 		methods: {
-      ...mapActions('order', ['updateProducts']),
+			...mapActions('order', ['updateProducts']),
 			newProduct() {
 				this.addedProducts.push({
-          selected: {
-            standard: [],
-            premium: []
-          }
-			  })
+					selected: {
+						standard: [],
+						premium: []
+					}
+				})
 			},
 			removeProduct(i) {
 				this.addedProducts.splice(i, 1)
