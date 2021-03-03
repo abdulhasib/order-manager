@@ -2,8 +2,12 @@
 	<v-card class="order-card" outlined>
 		<v-card-title class="order-title">
 			Customer Details
+			<v-btn class="position-right mr-2" depressed text @click="minimised = !minimised">
+				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
+			</v-btn>
 		</v-card-title>
-		<div class="customer-details-form-section-container">
+
+		<div v-show="minimised" class="customer-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<v-text-field
@@ -65,6 +69,15 @@
 				</v-col>
 			</v-row>
 		</div>
+
+		<div v-show="!minimised" class="customer-details-form-section-summary-container">
+			<div class="ml-4 mb-4">
+					First Name: {{ customerDetails.firstname }}<br/>
+					Last Name: {{ customerDetails.lastname }}<br/>
+					Number: {{ customerDetails.number }}<br/>
+					Address: {{ customerDetails.address.line }} {{ customerDetails.address.line2 }} {{ customerDetails.address.city }} {{ customerDetails.address.postcode }}
+		</div>
+		</div>
 	</v-card>
 </template>
 
@@ -76,6 +89,11 @@
 			customerDetails: {
 				type: Object,
 				required: true
+			}
+		},
+		data() {
+			return {
+				minimised: false
 			}
 		},
 		computed: {},
@@ -96,4 +114,8 @@
 <style lang="stylus" scoped>
 	.customer-details-form-section-container
 		padding 1rem
+	
+	.position-right
+		position absolute
+		right 0
 </style>
