@@ -18,10 +18,10 @@ const state = {
 		},
 		productDetails: [
 			{
-				selected: ['Standard 1', 'Standard 2', 'Standard 3']
-			},
-			{
-				selected: ['Standard 1', 'Standard 2', 'Standard 4']
+				selected: {
+					standard: [],
+					premium: []
+				}
 			}
 		]
 	}
@@ -33,8 +33,10 @@ const getters = {
 }
 
 const mutations = {
-	setCurrentOrders: (state, newOrder) => state.currentOrders = newOrder,
-	setForm: (state, section, fieldName, value) => state.createOrderForm[section][fieldName] = value
+	setCurrentOrders: (state, newOrder) => (state.currentOrders = newOrder),
+	setForm: (state, section, fieldName, value) =>
+		(state.createOrderForm[section][fieldName] = value),
+	setProducts: (state, updatedForm) => state.createOrderForm.productDetails = updatedForm
 }
 
 const actions = {
@@ -58,6 +60,9 @@ const actions = {
 			updatedForm.fieldName,
 			updatedForm.value
 		)
+	},
+	async updateProducts({ commit }, updatedProducts) {
+		commit('setProducts', updatedProducts)
 	}
 }
 

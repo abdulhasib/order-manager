@@ -1,76 +1,72 @@
 <template>
-  <v-card class="order-card" outlined>
-    <v-card-title class="order-title">
-      {{ addedProducts.length }}
-      Product Details
-    </v-card-title>
-    <div class="product-details-form-section-container">
-      <v-row>
-        <v-col cols="12" md="4">
-          <v-card-text class="pt-4">
-            <div>
-              <v-expand-transition
-                v-for="(product, i) in addedProducts"
-                :key="i"
-                appear
-              >
-                <v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
-                  <v-container>
-                    <div class="card-title-container">
-                      <v-card-title class="product-title">
-                        Product {{ i + 1 }}
-                      </v-card-title>
-                      <v-btn fab small @click="removeProduct(i)">
-                        <v-icon>mdi-minus</v-icon>
-                      </v-btn>
-                    </div>
-                    <v-row>
-                      <v-col cols="12" md="4">
-                        <v-container class="px-0" fluid>
-                          Standard
-                          <div
-                            v-for="(standardProduct,
-                                    index) in standardProductsList"
-                            :key="index"
-                          >
-                            <v-checkbox
-                              v-model="product.selected[index]"
-                              :label="standardProduct.label"
-                            />
-                          </div>
-                        </v-container>
-                        <v-container class="px-0" fluid>
-                          Premium
-                          <div
-                            v-for="(premiumProduct,
-                                    index) in premiumProductsList"
-                            :key="index"
-                          >
-                            <v-checkbox
-                              v-model="product.selected[index]"
-                              :label="premiumProduct.label"
-                            />
-                          </div>
-                        </v-container>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card>
-              </v-expand-transition>
-              <v-layout flex justify-center wrap>
-                <v-flex class="mb-3">
-                  <v-btn fab small @click="newProduct()">
-                    <v-icon>mdi-plus</v-icon>
-                  </v-btn>
-                  Add product
-                </v-flex>
-              </v-layout>
-            </div>
-          </v-card-text>
-        </v-col>
-      </v-row>
-    </div>
-  </v-card>
+	<v-card class="order-card" outlined>
+		<v-card-title class="order-title">
+			{{ addedProducts.length }}
+			Product Details
+		</v-card-title>
+		<div class="product-details-form-section-container">
+			<v-row>
+				<v-col cols="12" md="4">
+					<v-card-text class="pt-4">
+						<div>
+							<v-expand-transition
+								v-for="(product, i) in addedProducts"
+								:key="i"
+								appear
+							>
+								<v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
+									<v-container>
+										<div class="card-title-container">
+											<v-card-title class="product-title">
+												Product {{ i + 1 }}
+											</v-card-title>
+											<v-btn fab small @click="removeProduct(i)">
+												<v-icon>mdi-minus</v-icon>
+											</v-btn>
+										</div>
+										<v-row>
+											<v-col cols="12" md="4">
+												<v-container class="px-0" fluid>
+													Standard
+													<v-checkbox
+														v-for="(standardProduct,
+														index) in standardProductsList"
+														:key="index"
+														v-model="product.selected.standard[index]"
+														:label="standardProduct.label"
+														:value="standardProduct.label"
+													/>
+												</v-container>
+												<v-container class="px-0" fluid>
+													Premium
+													<v-checkbox
+														v-for="(premiumProduct,
+														index) in premiumProductsList"
+														:key="index"
+														v-model="product.selected.premium[index]"
+														:label="premiumProduct.label"
+														:value="premiumProduct.label || ''"
+													/>
+												</v-container>
+											</v-col>
+										</v-row>
+									</v-container>
+								</v-card>
+							</v-expand-transition>
+							<v-layout flex justify-center wrap>
+								<v-flex class="mb-3">
+									<v-btn fab small @click="newProduct()">
+										<v-icon>mdi-plus</v-icon>
+									</v-btn>
+									Add product
+								</v-flex>
+							</v-layout>
+						</div>
+					</v-card-text>
+				</v-col>
+			</v-row>
+		</div>
+	</v-card>
 </template>
 
 <script>
@@ -100,30 +96,30 @@
 				]
 			}
 		},
+    watch: {
+      addedProducts:{
+        handler(val) {
+          this.updateProducts(val)
+        },
+        deep: true
+      }
+    },
 		computed: {},
 		created() {
 			//console.log(this.$props.table)
 		},
 		methods: {
+      ...mapActions('order', ['updateProducts']),
 			newProduct() {
-        console.log(this.addedProducts)
 				this.addedProducts.push({
-					selected: []
-				})
+          selected: {
+            standard: [],
+            premium: []
+          }
+			  })
 			},
 			removeProduct(i) {
-				console.log(i)
 				this.addedProducts.splice(i, 1)
-			},
-			isChecked(product, label) {
-				console.log(product.selected.includes(label))
-				return product.selected.includes(label)
-			},
-			...mapActions('order', ['updateForm']),
-			updateInput(fieldName, value) {
-        console.log('asas',value)
-				const updatedForm = { section: 'productDetails', fieldName, value }
-				this.updateForm(updatedForm)
 			}
 		}
 	}
