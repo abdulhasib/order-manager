@@ -1,14 +1,14 @@
 <template>
-  <v-app id="app">
-    <v-main>
-      <v-container id="container">
-        <v-main>
-          <router-view />
-        </v-main>
-      </v-container>
-    </v-main>
-    <nav-bar />
-  </v-app>
+	<v-app id="app">
+		<v-main>
+			<v-container id="container">
+				<v-main>
+					<router-view />
+				</v-main>
+			</v-container>
+		</v-main>
+		<nav-bar />
+	</v-app>
 </template>
 
 <style lang="stylus" scope>

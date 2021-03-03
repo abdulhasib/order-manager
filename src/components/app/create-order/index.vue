@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <header-top :title="title" />
-    <!-- {{ createOrderForm.productDetails }} -->
-    <!-- <v-form> -->
-    <v-container>
-      <customer-details-form-section
-        :customer-details="createOrderForm.customerDetails"
-      />
-      <product-details-form-section
-        :product-details="createOrderForm.productDetails"
-      />
-    </v-container>
-    <!-- </v-form> -->
-  </div>
+	<div>
+		<header-top :title="title" />
+		<!-- {{ createOrderForm.productDetails }} -->
+		<!-- <v-form> -->
+		<v-container>
+			<customer-details-form-section
+				:customer-details="createOrderForm.customerDetails"
+			/>
+			<product-details-form-section
+				:product-details="createOrderForm.productDetails"
+			/>
+		</v-container>
+		<!-- </v-form> -->
+	</div>
 </template>
 
 <script>

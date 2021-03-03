@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <header-top :title="title" />
-    <template v-if="isloaded === false">
-      <loader />
-    </template>
-    <template v-else>
-      <div class="button-container">
-        <v-btn elevation="5" color="pink" fab dark small absolute bottom left>
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </div>
-    </template>
-  </div>
+	<div>
+		<header-top :title="title" />
+		<template v-if="isloaded === false">
+			<loader />
+		</template>
+		<template v-else>
+			<div class="button-container">
+				<v-btn elevation="5" color="pink" fab dark small absolute bottom left>
+					<v-icon>mdi-plus</v-icon>
+				</v-btn>
+			</div>
+		</template>
+	</div>
 </template>
 
 <script>

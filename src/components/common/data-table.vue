@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <v-data-table :headers="table.headers" :items="table.data" />
-  </div>
+	<div>
+		<v-data-table :headers="table.headers" :items="table.data" />
+	</div>
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
-  <footer class="caption">
-    <p>
-      Footer
-    </p>
-  </footer>
+	<footer class="caption">
+		<p>
+			Footer
+		</p>
+	</footer>
 </template>
 
 <style lang="stylus">

@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <header-top :title="title" />
-    <template v-if="isloaded === false">
-      <loader />
-    </template>
-    <template v-else>
-      <div>{{ createOrderForm }}</div>
-    </template>
-  </div>
+	<div>
+		<header-top :title="title" />
+		<template v-if="isloaded === false">
+			<loader />
+		</template>
+		<template v-else>
+			<div>{{ createOrderForm }}</div>
+		</template>
+	</div>
 </template>
 
 <script>

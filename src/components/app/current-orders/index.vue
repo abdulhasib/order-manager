@@ -1,23 +1,23 @@
 <template>
-  <div>
-    <header-top :title="title" />
-    <template v-if="isloaded === false">
-      <loader />
-    </template>
-    <template v-else>
-      <div class="overall-info-card" outlined>
-        <v-subheader class="order-title font-weight-medium">
-          <span class="orders-length">
-            {{ currentOrders.length }}
-          </span>
-          <span>
-            New Orders
-          </span>
-        </v-subheader>
-      </div>
-      <orders-list :data="currentOrders" />
-    </template>
-  </div>
+	<div>
+		<header-top :title="title" />
+		<template v-if="isloaded === false">
+			<loader />
+		</template>
+		<template v-else>
+			<div class="overall-info-card" outlined>
+				<v-subheader class="order-title font-weight-medium">
+					<span class="orders-length">
+						{{ currentOrders.length }}
+					</span>
+					<span>
+						New Orders
+					</span>
+				</v-subheader>
+			</div>
+			<orders-list :data="currentOrders" />
+		</template>
+	</div>
 </template>
 
 <script>

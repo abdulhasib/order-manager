@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="overflow-hidden">
-      <!--<div class="text-center mb-8">
+	<div>
+		<div class="overflow-hidden">
+			<!--<div class="text-center mb-8">
 				<v-btn
 					color="deep-purple"
 					outlined
@@ -11,26 +11,26 @@
 				</v-btn>
 			</div>-->
 
-      <v-bottom-navigation grow :input-value="active">
-        <div v-for="(item, i) in navItems" :key="i" exact class="nav-container">
-          <router-link class="nav-link" :to="{ path: item.path }">
-            <v-btn
-              class="button"
-              href="#"
-              text
-              depressed
-              :class="item.path === path ? 'active' : 'not-active'"
-            >
-              <span>
-                <v-icon>{{ item.icon }}</v-icon>
-                {{ item.title }}
-              </span>
-            </v-btn>
-          </router-link>
-        </div>
-      </v-bottom-navigation>
-    </div>
-  </div>
+			<v-bottom-navigation grow :input-value="active">
+				<div v-for="(item, i) in navItems" :key="i" exact class="nav-container">
+					<router-link class="nav-link" :to="{ path: item.path }">
+						<v-btn
+							class="button"
+							href="#"
+							text
+							depressed
+							:class="item.path === path ? 'active' : 'not-active'"
+						>
+							<span>
+								<v-icon>{{ item.icon }}</v-icon>
+								{{ item.title }}
+							</span>
+						</v-btn>
+					</router-link>
+				</div>
+			</v-bottom-navigation>
+		</div>
+	</div>
 </template>
 
 <script>
