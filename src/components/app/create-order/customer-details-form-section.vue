@@ -76,7 +76,7 @@
 					Last Name: {{ customerDetails.lastname }}<br/>
 					Number: {{ customerDetails.number }}<br/>
 					Address: {{ customerDetails.address.line }} {{ customerDetails.address.line2 }} {{ customerDetails.address.city }} {{ customerDetails.address.postcode }}
-		</div>
+			</div>
 		</div>
 	</v-card>
 </template>

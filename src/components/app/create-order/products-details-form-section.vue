@@ -1,10 +1,13 @@
 <template>
 	<v-card class="order-card" outlined>
 		<v-card-title class="order-title">
-			{{ addedProducts.length }}
 			Product Details
+			<v-btn class="position-right mr-2" depressed text @click="minimised = !minimised">
+				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
+			</v-btn>
 		</v-card-title>
-		<div class="product-details-form-section-container">
+
+		<div v-show="!minimised" class="products-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<v-card-text class="pt-4">
@@ -66,13 +69,40 @@
 				</v-col>
 			</v-row>
 		</div>
+
+		<div v-show="minimised" class="products-details-form-section-summary-container">
+			<div class="ml-4 mb-4">
+				<v-row 								
+					v-for="(product, i) in addedProducts"
+					:key="i"
+				>
+				<v-col cols="12" md="4">
+					<span>	Product {{ i + 1 }} </span>
+				</v-col>
+				<v-col
+						v-for="(standard, j) in product.selected.standard"
+						:key="j"
+					>
+						<span>{{ standard }}</span>
+					</v-col>
+					<v-col
+						v-for="(premium, k) in product.selected.premium"
+						:key="k"
+					>
+						<span>{{ premium }}</span>
+					</v-col>
+				</v-row>
+			</div>
+		</div> 
 	</v-card>
 </template>
 
 <script>
 	import { mapActions } from 'vuex'
+	import DataTable from '../../common/data-table.vue'
 
 	export default {
+		components: { DataTable },
 		props: {
 			productsDetails: {
 				type: Array,
@@ -81,6 +111,7 @@
 		},
 		data() {
 			return {
+				minimised: true,
 				addedProducts: this.productsDetails,
 				standardProductsList: [
 					{ label: 'Standard 1' },
@@ -129,6 +160,10 @@
 		align-items: center;
 		justify-content: space-between
 
-	.product-details-form-section-container
+	.products-details-form-section-container
 		padding 1rem
+
+	.position-right
+		position absolute
+		right 0
 </style>
