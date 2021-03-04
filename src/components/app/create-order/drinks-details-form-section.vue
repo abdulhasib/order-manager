@@ -3,7 +3,12 @@
 		<v-card-title class="order-title">
 			{{ addedDrinks.selected.drinks.length }}
 			Drinks Details
-			<v-btn class="position-right mr-2" depressed text @click="minimised = !minimised">
+			<v-btn
+				class="position-right mr-2"
+				depressed
+				text
+				@click="minimised = !minimised"
+			>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
@@ -43,22 +48,21 @@
 			</v-row>
 		</div>
 
-		<div v-show="minimised" class="products-details-form-section-summary-container">
+		<div
+			v-show="minimised"
+			class="products-details-form-section-summary-container"
+		>
 			<div class="ml-4 mb-4">
-				<v-row 								
-					v-for="(drink, i) in addedDrinks.selected.drinks"
-					:key="i"
-				>
-				<v-col cols="6" md="4">
-					<span>	Drink {{ i + 1 }} </span>
-				</v-col>
-				<v-col cols="6" md="4">
-					<span>	{{ drink }} </span>
-				</v-col>
+				<v-row v-for="(drink, i) in addedDrinks.selected.drinks" :key="i">
+					<v-col cols="6" md="4">
+						<span> Drink {{ i + 1 }} </span>
+					</v-col>
+					<v-col cols="6" md="4">
+						<span> {{ drink }} </span>
+					</v-col>
 				</v-row>
 			</div>
-		</div> 
-
+		</div>
 	</v-card>
 </template>
 
@@ -109,7 +113,7 @@
 
 	.product-details-form-section-container
 		padding 1rem
-	
+
 	.position-right
 		position absolute
 		right 0
