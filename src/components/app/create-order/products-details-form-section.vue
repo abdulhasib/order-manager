@@ -38,8 +38,8 @@
 													Standard
 													<v-checkbox
 														v-for="(standardProduct,
-														index) in standardProductsList"
-														:key="index"
+														index1) in standardProductsList"
+														:key="index1"
 														v-model="product.selected.standard"
 														:label="standardProduct.label"
 														:value="standardProduct.label"
@@ -49,8 +49,8 @@
 													Premium
 													<v-checkbox
 														v-for="(premiumProduct,
-														index) in premiumProductsList"
-														:key="index"
+														index2) in premiumProductsList"
+														:key="index2"
 														v-model="product.selected.premium"
 														:label="premiumProduct.label"
 														:value="premiumProduct.label || ''"
@@ -84,12 +84,16 @@
 					<v-col cols="12" md="4">
 						<span> Product {{ i + 1 }} </span>
 					</v-col>
-					<v-col v-for="(standard, j) in product.selected.standard" :key="j">
-						<span>{{ standard }}</span>
-					</v-col>
-					<v-col v-for="(premium, k) in product.selected.premium" :key="k">
-						<span>{{ premium }}</span>
-					</v-col>
+					<div class="d-flex flex-md-row">
+						<v-col v-for="(standard, j) in product.selected.standard" :key="j">
+							<span>{{ standard }}</span>
+						</v-col>
+					</div>
+					<div class="d-flex flex-md-row">
+						<v-col v-for="(premium, k) in product.selected.premium" :key="k">
+							<span>{{ premium }}</span>
+						</v-col>
+					</div>
 				</v-row>
 			</div>
 		</div>

@@ -70,7 +70,6 @@ const actions = {
 		)
 	},
 	async updateProducts({ commit }, updatedProducts) {
-		console.log('a')
 		commit('setProducts', updatedProducts)
 	},
 	async updateDrinks({ commit }, updatedDrinks) {
