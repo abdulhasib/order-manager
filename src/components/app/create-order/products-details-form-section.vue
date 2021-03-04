@@ -77,24 +77,26 @@
 
 		<div
 			v-show="minimised"
-			class="products-details-form-section-summary-container"
+			v-for="(product, i) in addedProducts"
+			:key="i"
+			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div class="ml-4 mb-4">
-				<v-row v-for="(product, i) in addedProducts" :key="i">
-					<v-col cols="12" md="4">
-						<span> Product {{ i + 1 }} </span>
-					</v-col>
-					<div class="d-flex flex-md-row">
-						<v-col v-for="(standard, j) in product.selected.standard" :key="j">
-							<span>{{ standard }}</span>
-						</v-col>
+			<span> Product {{ i + 1 }} </span>
+			<div class="d-flex flex-wrap">
+				<div class="d-flex flex-wrap" style="width:100%">
+					<div v-for="(standard, j) in product.selected.standard" :key="j"
+						class="products-details-form-section-summary"
+					>
+						<span>{{ standard }}</span>
 					</div>
-					<div class="d-flex flex-md-row">
-						<v-col v-for="(premium, k) in product.selected.premium" :key="k">
-							<span>{{ premium }}</span>
-						</v-col>
+				</div>
+				<div class="d-flex flex-wrap" style="width:100%">
+					<div v-for="(premium, k) in product.selected.premium" :key="k"
+						class="products-details-form-section-summary"
+					>
+						<span>{{ premium }}</span>
 					</div>
-				</v-row>
+				</div>
 			</div>
 		</div>
 	</v-card>
@@ -165,6 +167,11 @@
 
 	.products-details-form-section-container
 		padding 1rem
+
+	.products-details-form-section-summary
+		display: flex
+		justify-content center
+		min-width 100px		
 
 	.position-right
 		position absolute
