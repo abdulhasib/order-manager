@@ -83,8 +83,8 @@
 		>
 			<div
 				v-if="
-					!product.selected.standard.length === 0 ||
-						!product.selected.standard.length === 0
+					product.selected.standard.length !== 0 ||
+						product.selected.standard.length !== 0
 				"
 			>
 				<span> Product {{ i + 1 }} </span>
@@ -108,6 +108,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div v-else>
+				<span class="ml-2">Select a product.</span>
 			</div>
 		</div>
 	</v-card>

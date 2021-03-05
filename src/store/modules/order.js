@@ -26,7 +26,8 @@ const state = {
 		],
 		drinksDetails: {
 			selected: {
-				drinks: []
+				drinks: [],
+				totalCost: 0
 			}
 		}
 	}

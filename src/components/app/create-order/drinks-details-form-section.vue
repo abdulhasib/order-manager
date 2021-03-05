@@ -30,28 +30,46 @@
 												<v-container
 													class="px-0"
 													fluid
-													v-if="drinksCount.length"
+													v-if="selectedDrinksCount.length"
 												>
-													<v-text-field
+													<div class="d-flex flex-row-reverse">
+														<span>Price</span>
+													</div>
+													<div
 														v-for="(drink, index) in drinksList"
 														:key="index"
-														v-model="drinksCount[index].count"
-														:label="drink.label"
-														type="number"
-														append-outer-icon="add"
-														@click:append-outer="increment(drink.label, index)"
-														prepend-icon="remove"
-														@click:prepend="decrement(drink.label, index)"
-														min="0"
-														oninput="validity.valid||(value='');"
-														:rules="drinksRules"
-													></v-text-field>
+														class="d-flex align-center justify-space-between"
+													>
+														<v-text-field
+															v-model="selectedDrinksCount[index].count"
+															:label="drink.label"
+															type="number"
+															append-outer-icon="add"
+															@click:append-outer="
+																increment(drink.label, index)
+															"
+															prepend-icon="remove"
+															@click:prepend="decrement(drink.label, index)"
+															min="0"
+															oninput="validity.valid||(value='');"
+															:rules="drinksRules"
+															style="max-width: 10rem;"
+														></v-text-field>
+														<div>
+															<span>£{{ drink.price }}</span>
+														</div>
+													</div>
 												</v-container>
 											</v-col>
 										</v-row>
 									</v-container>
 								</v-card>
 							</v-expand-transition>
+							<div class="d-flex flex-row-reverse mr-2">
+								<span>
+									Drinks Total: £{{ addedDrinks.selected.totalCost }}
+								</span>
+							</div>
 						</div>
 					</v-card-text>
 				</v-col>
@@ -60,15 +78,21 @@
 
 		<div
 			v-show="minimised"
-			class="products-details-form-section-summary-container"
+			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div class="ml-4 mb-4" v-if="drinksCount.length">
-				<v-row v-for="(drink, i) in drinksCount" :key="i">
+			<div class="ml-4 mb-4" v-if="addedDrinks.selected.drinks.length">
+				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
 					<v-col cols="6" md="4" v-if="drink.count !== 0">
 						<span> {{ drink.name }} </span>
 						<span> x {{ drink.count }} </span>
 					</v-col>
 				</v-row>
+				<div class="d-flex flex-row-reverse mr-2">
+					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
+				</div>
+			</div>
+			<div v-else>
+				<span class="ml-2">Select a drink.</span>
 			</div>
 		</div>
 	</v-card>
@@ -86,43 +110,66 @@
 		},
 		data() {
 			return {
-				foo: { count: 0 },
-				drinksRules: [
-					(v) => !!v || 'This field is required',
-					(v) => (v && v > 0) || 'Select Number of drinks or set to 0'
-				],
-				drinksCount: [],
 				minimised: true,
 				addedDrinks: this.drinksDetails,
+				drinksRules: [(v) => v > -1 || 'Select Number of drinks or set to 0'],
+				selectedDrinksCount: [],
+				selectedDrinksTotalCost: 0,
 				drinksList: [
-					{ label: 'Pepsi' },
-					{ label: 'Coke' },
-					{ label: 'Fanta' },
-					{ label: '7up' }
+					{ label: 'Pepsi', price: 1 },
+					{ label: 'Coke', price: 2 },
+					{ label: 'Fanta', price: 3 },
+					{ label: '7up', price: 4 }
 				]
 			}
 		},
 		computed: {},
 		mounted() {
-			this.drinksList.forEach(({ label }) => this.getDrinksCount(label))
+			this.drinksList.forEach(({ label }, index) =>
+				this.getselectedDrinksCount(label, index)
+			)
 		},
 		methods: {
 			...mapActions('order', ['updateDrinks']),
 			increment(drink, index) {
-				this.drinksCount[index].count = this.drinksCount[index].count + 1
+				const count = this.selectedDrinksCount[index].count + 1
+				const price = this.drinksList[index].price
+				// const cost = price * count
+
+				this.selectedDrinksCount[index].count = count
+				// this.selectedDrinksCount[index].price = price
+				// this.selectedDrinksCount[index].cost = cost
+
 				this.addedDrinks.selected.drinks.push(drink)
+				this.addedDrinks.selected.totalCost += price
 				this.updateDrinks(this.addedDrinks)
 			},
 			decrement(drink, index) {
-				this.drinksCount[index].count = this.drinksCount[index].count - 1
-				this.$delete(this.addedDrinks.selected.drinks, index)
+				const newCount = this.selectedDrinksCount[index].count - 1
+				if (newCount < 0) return
+
+				this.selectedDrinksCount[index].count = newCount
+				this.addedDrinks.selected.drinks.splice(
+					this.addedDrinks.selected.drinks.indexOf(drink),
+					1
+				)
+
+				this.addedDrinks.selected.totalCost =
+					this.addedDrinks.selected.totalCost - this.drinksList[index].price
 				this.updateDrinks(this.addedDrinks)
 			},
-			getDrinksCount(drink) {
-				this.drinksCount.push({
+			getselectedDrinksCount(drink, index) {
+				const count = this.addedDrinks.selected.drinks.filter(
+					(v) => v === drink
+				).length
+				const price = this.drinksList[index].price
+				const cost = price * count
+
+				this.selectedDrinksCount.push({
 					name: drink,
-					count: this.addedDrinks.selected.drinks.filter((v) => v === drink)
-						.length
+					count,
+					price,
+					cost
 				})
 			}
 		}
