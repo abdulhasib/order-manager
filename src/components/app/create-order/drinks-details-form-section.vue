@@ -1,7 +1,6 @@
 <template>
 	<v-card class="order-card" outlined>
 		<v-card-title class="order-title">
-			{{ addedDrinks.selected.drinks.length }}
 			Drinks Details
 			<v-btn
 				class="position-right mr-2"
@@ -65,7 +64,7 @@
 		>
 			<div class="ml-4 mb-4" v-if="drinksCount.length">
 				<v-row v-for="(drink, i) in drinksCount" :key="i">
-					<v-col cols="6" md="4">
+					<v-col cols="6" md="4" v-if="drink.count !== 0">
 						<span> {{ drink.name }} </span>
 						<span> x {{ drink.count }} </span>
 					</v-col>

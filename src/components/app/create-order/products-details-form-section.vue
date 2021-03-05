@@ -81,24 +81,31 @@
 			:key="i"
 			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<span> Product {{ i + 1 }} </span>
-			<div class="d-flex flex-wrap">
-				<div class="d-flex flex-wrap" style="width:100%">
-					<div
-						v-for="(standard, j) in product.selected.standard"
-						:key="j"
-						class="products-details-form-section-summary"
-					>
-						<span>{{ standard }}</span>
+			<div
+				v-if="
+					!product.selected.standard.length === 0 ||
+						!product.selected.standard.length === 0
+				"
+			>
+				<span> Product {{ i + 1 }} </span>
+				<div class="d-flex flex-wrap">
+					<div class="d-flex flex-wrap" style="width:100%">
+						<div
+							v-for="(standard, j) in product.selected.standard"
+							:key="j"
+							class="products-details-form-section-summary"
+						>
+							<span>{{ standard }}</span>
+						</div>
 					</div>
-				</div>
-				<div class="d-flex flex-wrap" style="width:100%">
-					<div
-						v-for="(premium, k) in product.selected.premium"
-						:key="k"
-						class="products-details-form-section-summary"
-					>
-						<span>{{ premium }}</span>
+					<div class="d-flex flex-wrap" style="width:100%">
+						<div
+							v-for="(premium, k) in product.selected.premium"
+							:key="k"
+							class="products-details-form-section-summary"
+						>
+							<span>{{ premium }}</span>
+						</div>
 					</div>
 				</div>
 			</div>
