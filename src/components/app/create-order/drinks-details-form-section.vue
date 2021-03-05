@@ -28,14 +28,23 @@
 										</div>
 										<v-row>
 											<v-col cols="12" md="4">
-												<v-container class="px-0" fluid>
-													<v-checkbox
+												<v-container class="px-0" fluid
+													v-if="drinksCount.length"
+												>
+												<v-text-field
 														v-for="(drink, index) in drinksList"
 														:key="index"
-														v-model="addedDrinks.selected.drinks"
+														v-model="drinksCount[index][drink.label].count"
 														:label="drink.label"
-														:value="drink.label"
-													/>
+														type="number"
+														append-outer-icon="add"
+														@click:append-outer="increment(drink.label, index)"
+														prepend-icon="remove"
+														@click:prepend="decrement(drink.label, index)"
+														min="0"
+														oninput="validity.valid||(value='');"
+														:rules="drinksRules"
+													></v-text-field>
 												</v-container>
 											</v-col>
 										</v-row>
@@ -78,6 +87,12 @@
 		},
 		data() {
 			return {
+				foo: {count: 0},
+				drinksRules:  [ 
+					v => !!v || "This field is required",
+					v => ( v && v > 0 ) || "Select Number of drinks or set to 0"
+				],
+				drinksCount: [],
 				minimised: true,
 				addedDrinks: this.drinksDetails,
 				drinksList: [
@@ -88,19 +103,27 @@
 				]
 			}
 		},
-		watch: {
-			addedDrinks: {
-				handler(val) {
-					console.log(val)
-					this.updateDrinks(val)
-				},
-				deep: true
-			}
-		},
 		computed: {},
-		created() {},
+		mounted() {
+			this.drinksList.forEach(({ label }) => this.getDrinksCount(label))
+		},
 		methods: {
-			...mapActions('order', ['updateDrinks'])
+			...mapActions('order', ['updateDrinks']),
+			increment(drink, index) {
+				this.drinksCount[index][drink].count = this.drinksCount[index][drink].count + 1
+				this.addedDrinks.selected.drinks.push(drink)
+				this.updateDrinks(this.addedDrinks)
+			},
+			decrement(drink, index) {
+				this.drinksCount[index][drink].count = this.drinksCount[index][drink].count - 1
+				this.$delete(this.addedDrinks.selected.drinks, index)
+				this.updateDrinks(this.addedDrinks)
+			},
+			getDrinksCount(drink) {
+				this.drinksCount.push({
+					[drink]: {count: this.addedDrinks.selected.drinks.filter((v) => (v === drink)).length}
+				})
+			}
 		}
 	}
 </script>
