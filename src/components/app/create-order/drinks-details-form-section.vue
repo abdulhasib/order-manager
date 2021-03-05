@@ -36,7 +36,7 @@
 													<v-text-field
 														v-for="(drink, index) in drinksList"
 														:key="index"
-														v-model="drinksCount[index][drink.label].count"
+														v-model="drinksCount[index].count"
 														:label="drink.label"
 														type="number"
 														append-outer-icon="add"
@@ -63,13 +63,11 @@
 			v-show="minimised"
 			class="products-details-form-section-summary-container"
 		>
-			<div class="ml-4 mb-4">
-				<v-row v-for="(drink, i) in addedDrinks.selected.drinks" :key="i">
+			<div class="ml-4 mb-4" v-if="drinksCount.length">
+				<v-row v-for="(drink, i) in drinksCount" :key="i">
 					<v-col cols="6" md="4">
-						<span> Drink {{ i + 1 }} </span>
-					</v-col>
-					<v-col cols="6" md="4">
-						<span> {{ drink }} </span>
+						<span> {{ drink.name }} </span>
+						<span> x {{ drink.count }} </span>
 					</v-col>
 				</v-row>
 			</div>
@@ -112,23 +110,20 @@
 		methods: {
 			...mapActions('order', ['updateDrinks']),
 			increment(drink, index) {
-				this.drinksCount[index][drink].count =
-					this.drinksCount[index][drink].count + 1
+				this.drinksCount[index].count = this.drinksCount[index].count + 1
 				this.addedDrinks.selected.drinks.push(drink)
 				this.updateDrinks(this.addedDrinks)
 			},
 			decrement(drink, index) {
-				this.drinksCount[index][drink].count =
-					this.drinksCount[index][drink].count - 1
+				this.drinksCount[index].count = this.drinksCount[index].count - 1
 				this.$delete(this.addedDrinks.selected.drinks, index)
 				this.updateDrinks(this.addedDrinks)
 			},
 			getDrinksCount(drink) {
 				this.drinksCount.push({
-					[drink]: {
-						count: this.addedDrinks.selected.drinks.filter((v) => v === drink)
-							.length
-					}
+					name: drink,
+					count: this.addedDrinks.selected.drinks.filter((v) => v === drink)
+						.length
 				})
 			}
 		}
