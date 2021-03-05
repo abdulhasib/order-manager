@@ -84,14 +84,18 @@
 			<span> Product {{ i + 1 }} </span>
 			<div class="d-flex flex-wrap">
 				<div class="d-flex flex-wrap" style="width:100%">
-					<div v-for="(standard, j) in product.selected.standard" :key="j"
+					<div
+						v-for="(standard, j) in product.selected.standard"
+						:key="j"
 						class="products-details-form-section-summary"
 					>
 						<span>{{ standard }}</span>
 					</div>
 				</div>
 				<div class="d-flex flex-wrap" style="width:100%">
-					<div v-for="(premium, k) in product.selected.premium" :key="k"
+					<div
+						v-for="(premium, k) in product.selected.premium"
+						:key="k"
 						class="products-details-form-section-summary"
 					>
 						<span>{{ premium }}</span>
@@ -171,7 +175,7 @@
 	.products-details-form-section-summary
 		display: flex
 		justify-content center
-		min-width 100px		
+		min-width 100px
 
 	.position-right
 		position absolute
