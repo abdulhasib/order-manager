@@ -107,26 +107,17 @@
 			class="products-details-form-section-summary-container mx-2 my-2"
 		>
 			<div
-				v-if="product.standard.length !== 0 || product.standard.length !== 0"
+				v-if="product.length !== 0 "
 			>
 				<span> Product {{ i + 1 }} </span>
 				<div class="d-flex flex-wrap">
 					<div class="d-flex flex-wrap" style="width:100%">
 						<div
-							v-for="(standard, j) in product.standard"
+							v-for="(selectedProduct, j) in product.selected"
 							:key="j"
 							class="products-details-form-section-summary"
 						>
-							<span>{{ standard }}</span>
-						</div>
-					</div>
-					<div class="d-flex flex-wrap" style="width:100%">
-						<div
-							v-for="(premium, k) in product.premium"
-							:key="k"
-							class="products-details-form-section-summary"
-						>
-							<span>{{ premium }}</span>
+							<span>{{ selectedProduct }}</span>
 						</div>
 					</div>
 				</div>
@@ -142,7 +133,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-	components: { DataTable },
+	components: {},
 	props: {
 		productsDetails: {
 			type: Object,
@@ -151,7 +142,7 @@ export default {
 	},
 	data() {
 		return {
-			minimised: true,
+			minimised: false,
 			addedProducts: this.productsDetails,
 			productsList: [
 				{ label: 'Standard 1', type: 'standard' },
@@ -166,23 +157,12 @@ export default {
 			previouslySelectedProducts: []
 		}
 	},
-	// watch: {
-	// 	addedProducts: {
-	// 		handler(val) {
-	// 			console.log(val)
-	// 			// this.updateProducts(val)
-	// 		},
-	// 		deep: true
-	// 	}
-	// },
 	computed: {},
 	created() {},
 	methods: {
 		...mapActions('order', ['updateProducts']),
 		newProduct() {
 			this.addedProducts.products.push({
-				standard: [],
-				premium: [],
 				selected: [],
 				price: 0
 			})
@@ -215,7 +195,7 @@ export default {
 			this.addedProducts.totalCost += this.addedProducts.products[
 				productNumber
 			].price
-			this.updateProducts(this.addedProducts)
+			//this.updateProducts(this.addedProducts)
 			this.previouslySelectedProducts = val
 		}
 	}

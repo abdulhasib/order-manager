@@ -19,8 +19,6 @@ const state = {
 		productsDetails: {
 			products: [
 				{
-					standard: [],
-					premium: [],
 					selected: [],
 					price: 0
 				}
