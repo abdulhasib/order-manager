@@ -16,14 +16,17 @@ const state = {
 				postcode: ''
 			}
 		},
-		productsDetails: [
-			{
-				selected: {
+		productsDetails: {
+			products: [
+				{
 					standard: [],
-					premium: []
+					premium: [],
+					selected: [],
+					price: 0
 				}
-			}
-		],
+			],
+			totalCost: 0
+		},
 		drinksDetails: {
 			selected: {
 				drinks: [],
