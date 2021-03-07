@@ -51,8 +51,8 @@
 															v-if="item.type === 'standard'"
 															v-model="product.selected"
 															:label="item.label"
-															:value="item.label"
-															@change="updateSelected($event, item.type, i)"
+															:value="{ name: item.label, type: item.type }"
+															@change="updateSelected($event, i)"
 														/>
 													</div>
 												</div>
@@ -66,8 +66,8 @@
 															v-if="item.type === 'premium'"
 															v-model="product.selected"
 															:label="item.label"
-															:value="item.label"
-															@change="updateSelected($event, item.type, i)"
+															:value="{ name: item.label, type: item.type }"
+															@change="updateSelected($event, i)"
 														/>
 													</div>
 												</div>
@@ -115,7 +115,7 @@
 							:key="j"
 							class="products-details-form-section-summary"
 						>
-							<span>{{ selectedProduct }}</span>
+							<span>{{ selectedProduct.name }}</span>
 						</div>
 					</div>
 				</div>
@@ -171,13 +171,14 @@ export default {
 					this.addedProducts.products[productNumber].price
 			this.addedProducts.products.splice(productNumber, 1)
 		},
-		updateSelected(val, type, productNumber) {
+		updateSelected(val, productNumber) {
 			const isChecked = this.previouslySelectedProducts.length < val.length
 			this.addedProducts.totalCost -= this.addedProducts.products[
 				productNumber
 			].price
 
-			const fixedPrice = 15
+			const isPremium = val.some(({type}) => type === 'premium')
+			const fixedPrice = isPremium ? 15 : 13
 
 			if (isChecked) {
 				if (val.length < 4)
@@ -193,7 +194,7 @@ export default {
 			this.addedProducts.totalCost += this.addedProducts.products[
 				productNumber
 			].price
-			//this.updateProducts(this.addedProducts)
+			this.updateProducts(this.addedProducts)
 			this.previouslySelectedProducts = val
 		}
 	}
