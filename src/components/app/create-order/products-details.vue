@@ -106,9 +106,7 @@
 			:key="i"
 			class="products-details-form-section-summary-container mx-2 my-2"
 		>
-			<div
-				v-if="product.length !== 0 "
-			>
+			<div v-if="product.length !== 0">
 				<span> Product {{ i + 1 }} </span>
 				<div class="d-flex flex-wrap">
 					<div class="d-flex flex-wrap" style="width:100%">
