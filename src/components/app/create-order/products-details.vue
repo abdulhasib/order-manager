@@ -18,6 +18,12 @@
 		<div v-if="!minimised" class="products-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
+					<div><span class="caption">
+						Standard selections are £13. <br/>
+						If premium is selected product price will be 15. <br/>
+						Up to 3 flavours.
+						If selection exceeds 3, a charge of £1 will be added per extra selection.
+					</span></div>
 					<v-card-text class="pt-4">
 						<div>
 							<v-expand-transition
