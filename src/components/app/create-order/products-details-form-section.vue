@@ -12,7 +12,7 @@
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
-		<v-divider/>
+		<v-divider />
 
 		<div v-show="!minimised" class="products-details-form-section-container">
 			<v-row>
@@ -30,7 +30,12 @@
 											<v-card-title class="product-title">
 												Product {{ i + 1 }}
 											</v-card-title>
-											<v-btn v-if="addedProducts.products.length > 1" fab small @click="removeProduct(i)">
+											<v-btn
+												v-if="addedProducts.products.length > 1"
+												fab
+												small
+												@click="removeProduct(i)"
+											>
 												<v-icon>mdi-minus</v-icon>
 											</v-btn>
 										</div>
@@ -92,9 +97,13 @@
 												</div>
 											</v-col>
 										</v-row>
-							<div class="d-flex flex-row-reverse mr-2">
-								<span> Product {{ i + 1 }}: £{{ addedProducts.products[i].price }} </span>
-							</div>
+										<div class="d-flex flex-row-reverse mr-2">
+											<span>
+												Product {{ i + 1 }}: £{{
+													addedProducts.products[i].price
+												}}
+											</span>
+										</div>
 									</v-container>
 								</v-card>
 							</v-expand-transition>
@@ -215,7 +224,8 @@
 				})
 			},
 			removeProduct(i) {
-				this.addedProducts.totalCost = this.addedProducts.totalCost - this.addedProducts.products[i].price
+				this.addedProducts.totalCost =
+					this.addedProducts.totalCost - this.addedProducts.products[i].price
 				this.addedProducts.products.splice(i, 1)
 			},
 			updateSelected(val, i) {
