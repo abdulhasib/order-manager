@@ -41,30 +41,6 @@
 										</div>
 										<v-row>
 											<v-col cols="12" md="4">
-												<!-- <v-container class="px-0" fluid>
-													Standard
-													<v-checkbox
-														v-for="(standardProduct,
-														index1) in standardProductsList"
-														:key="index1"
-														v-model="product.selected"
-														:label="standardProduct.label"
-														:value="standardProduct.label"
-														@change="updateSelected($event, 'standardProductsList', index1)"
-													/>
-												</v-container>
-												<v-container class="px-0" fluid>
-													Premium
-													<v-checkbox
-														v-for="(premiumProduct,
-														index2) in premiumProductsList"
-														:key="index2"
-														v-model="product.selected"
-														:label="premiumProduct.label"
-														:value="premiumProduct.label"
-														@change="updateSelected($event, 'premiumProductsList', index2)"
-													/>
-												</v-container> -->
 												<div>
 													Standard
 													<div
@@ -76,7 +52,7 @@
 															v-model="product.selected"
 															:label="item.label"
 															:value="item.label"
-															@change="updateSelected($event, i)"
+															@change="updateSelected($event, item.type, i)"
 														/>
 													</div>
 												</div>
@@ -91,7 +67,7 @@
 															v-model="product.selected"
 															:label="item.label"
 															:value="item.label"
-															@change="updateSelected($event, i)"
+															@change="updateSelected($event, item.type, i)"
 														/>
 													</div>
 												</div>
@@ -128,7 +104,7 @@
 			v-for="(product, i) in addedProducts.products"
 			v-show="minimised"
 			:key="i"
-			class="products-details-form-section-summary-container mx-2 my-4"
+			class="products-details-form-section-summary-container mx-2 my-2"
 		>
 			<div
 				v-if="product.standard.length !== 0 || product.standard.length !== 0"
@@ -166,7 +142,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-	components: {},
+	components: { DataTable },
 	props: {
 		productsDetails: {
 			type: Object,
@@ -187,18 +163,7 @@ export default {
 				{ label: 'Premium 3', type: 'premium' },
 				{ label: 'Premium 4', type: 'premium' }
 			],
-			standardProductsList: [
-				{ label: 'Standard 1', price: 1 },
-				{ label: 'Standard 2', price: 2 },
-				{ label: 'Standard 3', price: 3 },
-				{ label: 'Standard 4', price: 4 }
-			],
-			premiumProductsList: [
-				{ label: 'Premium 1', price: 5 },
-				{ label: 'Premium 2', price: 6 },
-				{ label: 'Premium 3', price: 7 },
-				{ label: 'Premium 4', price: 8 }
-			]
+			previouslySelectedProducts: []
 		}
 	},
 	// watch: {
@@ -222,24 +187,36 @@ export default {
 				price: 0
 			})
 		},
-		removeProduct(i) {
+		removeProduct(productNumber) {
 			this.addedProducts.totalCost =
-					this.addedProducts.totalCost - this.addedProducts.products[i].price
-			this.addedProducts.products.splice(i, 1)
+					this.addedProducts.totalCost -
+					this.addedProducts.products[productNumber].price
+			this.addedProducts.products.splice(productNumber, 1)
 		},
-		updateSelected(val, i) {
-			this.addedProducts.totalCost -= this.addedProducts.products[i].price
+		updateSelected(val, type, productNumber) {
+			const isChecked = this.previouslySelectedProducts.length < val.length
+			this.addedProducts.totalCost -= this.addedProducts.products[
+				productNumber
+			].price
 
-			if (val !== null && val.length) {
-				if (val.length < 4) this.addedProducts.products[i].price = 13
-				else this.addedProducts.products[i].price++
-			} else this.addedProducts.products[i].price = 0
+			const fixedPrice = 15
 
-			this.addedProducts.totalCost += this.addedProducts.products[i].price
+			if (isChecked) {
+				if (val.length < 4)
+					this.addedProducts.products[productNumber].price = fixedPrice
+				else this.addedProducts.products[productNumber].price++
+			} else {
+				if (val.length > 3) this.addedProducts.products[productNumber].price--
+				else if (val.length && val.length < 4)
+					this.addedProducts.products[productNumber].price = fixedPrice
+				else this.addedProducts.products[productNumber].price = 0
+			}
 
-			console.log(this.addedProducts.products[i].price)
-
-			//this.updateProducts(this.addedProducts)
+			this.addedProducts.totalCost += this.addedProducts.products[
+				productNumber
+			].price
+			this.updateProducts(this.addedProducts)
+			this.previouslySelectedProducts = val
 		}
 	}
 }
