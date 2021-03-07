@@ -21,9 +21,9 @@
 <script>
 	import { mapState } from 'vuex'
 	import HeaderTop from '@/components/common/header.vue'
-	import CustomerDetailsFormSection from './customer-details-form-section.vue'
-	import ProductsDetailsFormSection from './products-details-form-section.vue'
-	import DrinksDetailsFormSection from './drinks-details-form-section.vue'
+	import CustomerDetailsFormSection from './customer-details.vue'
+	import ProductsDetailsFormSection from './products-details.vue'
+	import DrinksDetailsFormSection from './drinks-details.vue'
 
 	export default {
 		components: {
