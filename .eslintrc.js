@@ -6,6 +6,8 @@ module.exports = {
 	extends: ['prettier/vue', 'plugin:vue/recommended', 'eslint:recommended'],
 	plugins: ['prettier', 'vue'],
 	rules: {
+		"vue/html-indent": ["error", "tab"],  // enforce tabs in template
+		"indent": ["error", "tab"],           // enforce tabs in script and js files
 		'no-useless-escape': 0,
 		'comma-dangle': ['error', 'never'],
 		'max-len': ['error', { code: 500, tabWidth: 4, ignoreStrings: true, ignoreComments: true, ignoreTemplateLiterals: true, ignoreRegExpLiterals: true, ignoreUrls: true }],

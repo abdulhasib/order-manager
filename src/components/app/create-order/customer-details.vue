@@ -80,9 +80,9 @@
 			class="customer-details-form-section-summary-container"
 		>
 			<div class="ml-4 mb-4">
-				First Name: {{ customerDetails.firstname }}<br />
-				Last Name: {{ customerDetails.lastname }}<br />
-				Number: {{ customerDetails.number }}<br />
+				First Name: {{ customerDetails.firstname }}<br>
+				Last Name: {{ customerDetails.lastname }}<br>
+				Number: {{ customerDetails.number }}<br>
 				Address: {{ customerDetails.address.line }}
 				{{ customerDetails.address.line2 }} {{ customerDetails.address.city }}
 				{{ customerDetails.address.postcode }}
@@ -92,33 +92,33 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
-	export default {
-		props: {
-			customerDetails: {
-				type: Object,
-				required: true
-			}
-		},
-		data() {
-			return {
-				minimised: false
-			}
-		},
-		computed: {},
-		created() {
-			//console.log(this.$props.table)
-		},
-		methods: {
-			// ...mapGetters('order', ['getCreateOrderForm']),
-			...mapActions('order', ['updateForm']),
-			updateInput(fieldName, value) {
-				const updatedForm = { section: 'customerDetails', fieldName, value }
-				this.updateForm(updatedForm)
-			}
+export default {
+	props: {
+		customerDetails: {
+			type: Object,
+			required: true
+		}
+	},
+	data() {
+		return {
+			minimised: false
+		}
+	},
+	computed: {},
+	created() {
+		//console.log(this.$props.table)
+	},
+	methods: {
+		// ...mapGetters('order', ['getCreateOrderForm']),
+		...mapActions('order', ['updateForm']),
+		updateInput(fieldName, value) {
+			const updatedForm = { section: 'customerDetails', fieldName, value }
+			this.updateForm(updatedForm)
 		}
 	}
+}
 </script>
 
 <style lang="stylus" scoped>

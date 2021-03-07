@@ -5,8 +5,8 @@
 				class="d-flex justify-space-between position-right"
 				depressed
 				text
-				@click="minimised = !minimised"
 				width="100%"
+				@click="minimised = !minimised"
 			>
 				<span>Product Details</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
@@ -125,8 +125,8 @@
 		</div>
 
 		<div
-			v-show="minimised"
 			v-for="(product, i) in addedProducts.products"
+			v-show="minimised"
 			:key="i"
 			class="products-details-form-section-summary-container mx-2 my-4"
 		>
@@ -163,87 +163,86 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
-	import DataTable from '../../common/data-table.vue'
+import { mapActions } from 'vuex'
 
-	export default {
-		components: { DataTable },
-		props: {
-			productsDetails: {
-				type: Object,
-				required: true
-			}
+export default {
+	components: {},
+	props: {
+		productsDetails: {
+			type: Object,
+			required: true
+		}
+	},
+	data() {
+		return {
+			minimised: true,
+			addedProducts: this.productsDetails,
+			productsList: [
+				{ label: 'Standard 1', type: 'standard' },
+				{ label: 'Standard 2', type: 'standard' },
+				{ label: 'Standard 3', type: 'standard' },
+				{ label: 'Standard 4', type: 'standard' },
+				{ label: 'Premium 1', type: 'premium' },
+				{ label: 'Premium 2', type: 'premium' },
+				{ label: 'Premium 3', type: 'premium' },
+				{ label: 'Premium 4', type: 'premium' }
+			],
+			standardProductsList: [
+				{ label: 'Standard 1', price: 1 },
+				{ label: 'Standard 2', price: 2 },
+				{ label: 'Standard 3', price: 3 },
+				{ label: 'Standard 4', price: 4 }
+			],
+			premiumProductsList: [
+				{ label: 'Premium 1', price: 5 },
+				{ label: 'Premium 2', price: 6 },
+				{ label: 'Premium 3', price: 7 },
+				{ label: 'Premium 4', price: 8 }
+			]
+		}
+	},
+	// watch: {
+	// 	addedProducts: {
+	// 		handler(val) {
+	// 			console.log(val)
+	// 			// this.updateProducts(val)
+	// 		},
+	// 		deep: true
+	// 	}
+	// },
+	computed: {},
+	created() {},
+	methods: {
+		...mapActions('order', ['updateProducts']),
+		newProduct() {
+			this.addedProducts.products.push({
+				standard: [],
+				premium: [],
+				selected: [],
+				price: 0
+			})
 		},
-		data() {
-			return {
-				minimised: true,
-				addedProducts: this.productsDetails,
-				productsList: [
-					{ label: 'Standard 1', type: 'standard' },
-					{ label: 'Standard 2', type: 'standard' },
-					{ label: 'Standard 3', type: 'standard' },
-					{ label: 'Standard 4', type: 'standard' },
-					{ label: 'Premium 1', type: 'premium' },
-					{ label: 'Premium 2', type: 'premium' },
-					{ label: 'Premium 3', type: 'premium' },
-					{ label: 'Premium 4', type: 'premium' }
-				],
-				standardProductsList: [
-					{ label: 'Standard 1', price: 1 },
-					{ label: 'Standard 2', price: 2 },
-					{ label: 'Standard 3', price: 3 },
-					{ label: 'Standard 4', price: 4 }
-				],
-				premiumProductsList: [
-					{ label: 'Premium 1', price: 5 },
-					{ label: 'Premium 2', price: 6 },
-					{ label: 'Premium 3', price: 7 },
-					{ label: 'Premium 4', price: 8 }
-				]
-			}
-		},
-		// watch: {
-		// 	addedProducts: {
-		// 		handler(val) {
-		// 			console.log(val)
-		// 			// this.updateProducts(val)
-		// 		},
-		// 		deep: true
-		// 	}
-		// },
-		computed: {},
-		created() {},
-		methods: {
-			...mapActions('order', ['updateProducts']),
-			newProduct() {
-				this.addedProducts.products.push({
-					standard: [],
-					premium: [],
-					selected: [],
-					price: 0
-				})
-			},
-			removeProduct(i) {
-				this.addedProducts.totalCost =
+		removeProduct(i) {
+			this.addedProducts.totalCost =
 					this.addedProducts.totalCost - this.addedProducts.products[i].price
-				this.addedProducts.products.splice(i, 1)
-			},
-			updateSelected(val, i) {
-				this.addedProducts.totalCost -= this.addedProducts.products[i].price
+			this.addedProducts.products.splice(i, 1)
+		},
+		updateSelected(val, i) {
+			this.addedProducts.totalCost -= this.addedProducts.products[i].price
 
-				if (val !== null && val.length) {
-					if (val.length < 4) this.addedProducts.products[i].price = 13
-					else this.addedProducts.products[i].price++
-				} else this.addedProducts.products[i].price = 0
+			if (val !== null && val.length) {
+				if (val.length < 4) this.addedProducts.products[i].price = 13
+				else this.addedProducts.products[i].price++
+			} else this.addedProducts.products[i].price = 0
 
-				this.addedProducts.totalCost += this.addedProducts.products[i].price
+			this.addedProducts.totalCost += this.addedProducts.products[i].price
 
-				console.log(this.addedProducts.products[i].price)
+			console.log(this.addedProducts.products[i].price)
 
-				this.updateProducts(this.addedProducts)
-			}
+			//this.updateProducts(this.addedProducts)
 		}
 	}
+}
 </script>
 
 <style lang="stylus" scoped>

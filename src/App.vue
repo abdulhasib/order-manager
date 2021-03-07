@@ -26,11 +26,11 @@
 </style>
 
 <script>
-	import NavBar from '@/components/common/navbar.vue'
+import NavBar from '@/components/common/navbar.vue'
 
-	export default {
-		components: {
-			NavBar
-		}
+export default {
+	components: {
+		NavBar
 	}
+}
 </script>
