@@ -14,7 +14,8 @@
 		</v-card-title>
 		<v-divider />
 
-		<div v-show="!minimised" class="products-details-form-section-container">
+		<!--find out why v-show selects all checkboxes-->
+		<div v-if="!minimised" class="products-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<v-card-text class="pt-4">
@@ -173,12 +174,13 @@ export default {
 		},
 		updateSelected(val, productNumber) {
 			const isChecked = this.previouslySelectedProducts.length < val.length
+			const isPremium =
+					val.length && val.some(({ type }) => type === 'premium')
+			const fixedPrice = isPremium ? 15 : 13
+
 			this.addedProducts.totalCost -= this.addedProducts.products[
 				productNumber
 			].price
-
-			const isPremium = val.some(({type}) => type === 'premium')
-			const fixedPrice = isPremium ? 15 : 13
 
 			if (isChecked) {
 				if (val.length < 4)
@@ -194,8 +196,9 @@ export default {
 			this.addedProducts.totalCost += this.addedProducts.products[
 				productNumber
 			].price
-			this.updateProducts(this.addedProducts)
 			this.previouslySelectedProducts = val
+
+			this.updateProducts(this.addedProducts)
 		}
 	}
 }
