@@ -18,7 +18,7 @@
 
 				<v-card-subtitle class="order-subtitle">
 					<span> Created at: {{ item.created_at }} </span>
-					<br>
+					<br />
 					<span> Modified at: {{ item.modified_at }} </span>
 				</v-card-subtitle>
 			</v-card>
@@ -27,19 +27,19 @@
 </template>
 
 <script>
-export default {
-	props: {
-		data: {
-			type: Array,
-			required: true
-		}
-	},
-	computed: {},
-	created() {
-		//console.log(this.$props.table)
-	},
-	methods: {}
-}
+	export default {
+		props: {
+			data: {
+				type: Array,
+				required: true
+			}
+		},
+		computed: {},
+		created() {
+			//console.log(this.$props.table)
+		},
+		methods: {}
+	}
 </script>
 
 <style lang="stylus" scoped>
