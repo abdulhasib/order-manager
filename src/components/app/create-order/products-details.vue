@@ -18,12 +18,14 @@
 		<div v-if="!minimised" class="products-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
-					<div><span class="caption">
-						Standard selections are £13. <br/>
-						If premium is selected product price will be 15. <br/>
-						Up to 3 flavours.
-						If selection exceeds 3, a charge of £1 will be added per extra selection.
-					</span></div>
+					<div>
+						<span class="caption">
+							Standard selections are £13. <br>
+							If premium is selected product price will be 15. <br>
+							Up to 3 flavours. If selection exceeds 3, a charge of £1 will be
+							added per extra selection.
+						</span>
+					</div>
 					<v-card-text class="pt-4">
 						<div>
 							<v-expand-transition
@@ -57,8 +59,8 @@
 														<v-checkbox
 															v-if="item.type === 'standard'"
 															v-model="product.selected"
-															:label="item.label"
-															:value="{ name: item.label, type: item.type }"
+															:label="item.name"
+															:value="item"
 															@change="updateSelected($event, i)"
 														/>
 													</div>
@@ -72,8 +74,8 @@
 														<v-checkbox
 															v-if="item.type === 'premium'"
 															v-model="product.selected"
-															:label="item.label"
-															:value="{ name: item.label, type: item.type }"
+															:label="item.name"
+															:value="item"
 															@change="updateSelected($event, i)"
 														/>
 													</div>
@@ -150,14 +152,14 @@ export default {
 			minimised: false,
 			addedProducts: this.productsDetails,
 			productsList: [
-				{ label: 'Standard 1', type: 'standard' },
-				{ label: 'Standard 2', type: 'standard' },
-				{ label: 'Standard 3', type: 'standard' },
-				{ label: 'Standard 4', type: 'standard' },
-				{ label: 'Premium 1', type: 'premium' },
-				{ label: 'Premium 2', type: 'premium' },
-				{ label: 'Premium 3', type: 'premium' },
-				{ label: 'Premium 4', type: 'premium' }
+				{ name: 'Standard 1', type: 'standard' },
+				{ name: 'Standard 2', type: 'standard' },
+				{ name: 'Standard 3', type: 'standard' },
+				{ name: 'Standard 4', type: 'standard' },
+				{ name: 'Premium 1', type: 'premium' },
+				{ name: 'Premium 2', type: 'premium' },
+				{ name: 'Premium 3', type: 'premium' },
+				{ name: 'Premium 4', type: 'premium' }
 			],
 			previouslySelectedProducts: []
 		}
@@ -178,33 +180,51 @@ export default {
 					this.addedProducts.products[productNumber].price
 			this.addedProducts.products.splice(productNumber, 1)
 		},
+		calculateProductCost(fixedPrice, selectedNumber) {
+			let calculatedProductCost = 0
+
+			// 3 min selected before price change
+			if (selectedNumber > 3) calculatedProductCost = fixedPrice + (selectedNumber - 3)
+			else if (selectedNumber <= 3)	calculatedProductCost = fixedPrice
+			else calculatedProductCost = 0
+
+			return calculatedProductCost
+		},
 		updateSelected(val, productNumber) {
-			const isChecked = this.previouslySelectedProducts.length < val.length
+			// const isChecked = this.previouslySelectedProducts.length < val.length
 			const isPremium =
 					val.length && val.some(({ type }) => type === 'premium')
 			const fixedPrice = isPremium ? 15 : 13
+			// let price = fixedPrice
 
-			this.addedProducts.totalCost -= this.addedProducts.products[
+			// this.addedProducts.products[productNumber].price = 0
+			this.addedProducts.totalCost = this.addedProducts.totalCost - this.addedProducts.products[
 				productNumber
 			].price
+		
+			const price = this.calculateProductCost(fixedPrice, val.length)
+			// calculateTotalCost()
 
-			if (isChecked) {
-				if (val.length < 4)
-					this.addedProducts.products[productNumber].price = fixedPrice
-				else this.addedProducts.products[productNumber].price++
-			} else {
-				if (val.length > 3) this.addedProducts.products[productNumber].price--
-				else if (val.length && val.length < 4)
-					this.addedProducts.products[productNumber].price = fixedPrice
-				else this.addedProducts.products[productNumber].price = 0
-			}
+			// if (isChecked) {
+			// 	val.forEach((selected, index) => {
+			// 		if (index > 2) price++
+			// 	})
+			// } else {
+			// 	console.log(val.length)
+			// 	if (val.length > 3) {
+			// 		price = calculateProductCost(fixedPrice, val.length)
+			// 	} else if (val.length <= 3 && val.length) {
+			// 		price = fixedPrice
+			// 	} else price = 0
+			// }
 
+			this.addedProducts.products[productNumber].price = price
 			this.addedProducts.totalCost += this.addedProducts.products[
 				productNumber
 			].price
-			this.previouslySelectedProducts = val
+			// this.previouslySelectedProducts = val
 
-			this.updateProducts(this.addedProducts)
+			// this.updateProducts(this.addedProducts)
 		}
 	}
 }
