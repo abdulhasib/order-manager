@@ -1,18 +1,20 @@
 <template>
 	<v-card class="order-card" outlined>
-		<v-card-title class="order-title">
-			Customer Details
+		<v-card-title class="order-title my-2">
 			<v-btn
-				class="position-right mr-2"
+				class="d-flex justify-space-between position-right"
 				depressed
 				text
+				width="100%"
 				@click="minimised = !minimised"
 			>
+				<span>Customer Details</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
+		<v-divider />
 
-		<div v-show="minimised" class="customer-details-form-section-container">
+		<div v-show="!minimised" class="customer-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<v-text-field
@@ -76,16 +78,16 @@
 		</div>
 
 		<div
-			v-show="!minimised"
-			class="customer-details-form-section-summary-container"
+			v-show="minimised"
+			class="products-details-form-section-summary-container mx-2 my-4"
 		>
 			<div class="ml-4 mb-4">
-				First Name: {{ customerDetails.firstname }}<br>
-				Last Name: {{ customerDetails.lastname }}<br>
-				Number: {{ customerDetails.number }}<br>
-				Address: {{ customerDetails.address.line }}
+				<span> First Name: {{ customerDetails.firstname }} </span><br>
+				<span> Last Name: {{ customerDetails.lastname }} </span><br>
+				<span> Number: {{ customerDetails.number }} </span><br>
+				<span> Address: {{ customerDetails.address.line }}
 				{{ customerDetails.address.line2 }} {{ customerDetails.address.city }}
-				{{ customerDetails.address.postcode }}
+				{{ customerDetails.address.postcode }} </span>
 			</div>
 		</div>
 	</v-card>
@@ -103,7 +105,7 @@ export default {
 	},
 	data() {
 		return {
-			minimised: false
+			minimised: true
 		}
 	},
 	computed: {},

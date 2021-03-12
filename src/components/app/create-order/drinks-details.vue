@@ -82,7 +82,7 @@
 			v-show="minimised"
 			class="drinks-details-form-section-summary-container mx-2 my-4"
 		>
-			<div v-if="addedDrinks.selected.drinks.length" class="ml-4 mb-4">
+			<div v-show="addedDrinks.selected.drinks.length > 0" class="ml-4 mb-4">
 				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
 					<v-col v-if="drink.count !== 0" cols="6" md="4">
 						<span> {{ drink.name }} </span>
@@ -93,7 +93,7 @@
 					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
 				</div>
 			</div>
-			<div v-else>
+			<div v-show="addedDrinks.selected.drinks.length === 0">
 				<span class="ml-2">Select a drink.</span>
 			</div>
 		</div>

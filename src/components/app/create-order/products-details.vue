@@ -110,26 +110,33 @@
 		</div>
 
 		<div
-			v-for="(product, i) in addedProducts.products"
 			v-show="minimised"
-			:key="i"
-			class="products-details-form-section-summary-container mx-2 my-2"
+			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div v-show="product.length !== 0" class="ml-4 mb-4">
-				<span> Product {{ i + 1 }} </span>
-				<div class="d-flex flex-wrap">
-					<div class="d-flex flex-wrap" style="width:100%">
-						<div
-							v-for="(selectedProduct, j) in product.selected"
-							:key="j"
-							class="products-details-form-section-summary"
-						>
-							<span>{{ selectedProduct.name }}</span>
+			<div v-show="addedProducts.products[0].selected.length > 0" class="ml-4 mb-4">
+				<div
+					v-for="(product, i) in addedProducts.products"
+					v-show="minimised"
+					:key="i"
+				>
+					<div v-show="product.length !== 0">
+						<span> Product {{ i + 1 }} </span>
+						<div class="d-flex flex-wrap">
+							<div class="d-flex flex-wrap" style="width:100%">
+								<div
+									v-for="(selectedProduct, j) in product.selected"
+									:key="j"
+									class="products-details-form-section-summary"
+								>
+									<span>{{ selectedProduct.name }}</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div v-show="i === 0">
+
+			<div v-show="addedProducts.products[0].selected.length === 0">
 				<span class="ml-2">Select a product.</span>
 			</div>
 		</div>
@@ -149,7 +156,7 @@ export default {
 	},
 	data() {
 		return {
-			minimised: false,
+			minimised: true,
 			addedProducts: this.productsDetails,
 			productsList: [
 				{ name: 'Standard 1', type: 'standard' },

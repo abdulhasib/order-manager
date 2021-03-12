@@ -5,12 +5,15 @@
 		<!-- <v-form> -->
 		<v-container>
 			<customer-details-form-section
+				class="mb-4"
 				:customer-details="createOrderForm.customerDetails"
 			/>
 			<products-details-form-section
+				class="mb-4"
 				:products-details="createOrderForm.productsDetails"
 			/>
 			<drinks-details-form-section
+				class="mb-4"
 				:drinks-details="createOrderForm.drinksDetails"
 			/>
 		</v-container>
