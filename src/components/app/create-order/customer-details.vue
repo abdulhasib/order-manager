@@ -85,9 +85,12 @@
 				<span> First Name: {{ customerDetails.firstname }} </span><br>
 				<span> Last Name: {{ customerDetails.lastname }} </span><br>
 				<span> Number: {{ customerDetails.number }} </span><br>
-				<span> Address: {{ customerDetails.address.line }}
-				{{ customerDetails.address.line2 }} {{ customerDetails.address.city }}
-				{{ customerDetails.address.postcode }} </span>
+				<span>
+					Address: {{ customerDetails.address.line }}
+					{{ customerDetails.address.line2 }}
+					{{ customerDetails.address.city }}
+					{{ customerDetails.address.postcode }}
+				</span>
 			</div>
 		</div>
 	</v-card>

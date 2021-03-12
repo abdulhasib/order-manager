@@ -113,7 +113,10 @@
 			v-show="minimised"
 			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div v-show="addedProducts.products[0].selected.length > 0" class="ml-4 mb-4">
+			<div
+				v-show="addedProducts.products[0].selected.length > 0"
+				class="ml-4 mb-4"
+			>
 				<div
 					v-for="(product, i) in addedProducts.products"
 					v-show="minimised"
