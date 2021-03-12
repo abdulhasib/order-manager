@@ -14,14 +14,14 @@
 		</v-card-title>
 		<v-divider />
 
-		<!--find out why v-show selects all checkboxes-->
-		<div v-if="!minimised" class="products-details-form-section-container">
+		<!--find out why v-show selects all checkboxes value of checkboxes were being created on the fly maybe, value is now an existing object-->
+		<div v-show="!minimised" class="products-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<div>
 						<span class="caption">
-							Standard selections are £13. <br />
-							If premium is selected product price will be 15. <br />
+							Standard selections are £13. <br>
+							If premium is selected product price will be 15. <br>
 							Up to 3 flavours. If selection exceeds 3, a charge of £1 will be
 							added per extra selection.
 						</span>
@@ -115,7 +115,7 @@
 			:key="i"
 			class="products-details-form-section-summary-container mx-2 my-2"
 		>
-			<div v-if="product.length !== 0">
+			<div v-show="product.length !== 0" class="ml-4 mb-4">
 				<span> Product {{ i + 1 }} </span>
 				<div class="d-flex flex-wrap">
 					<div class="d-flex flex-wrap" style="width:100%">
@@ -129,7 +129,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-else-if="i === 0">
+			<div v-show="i === 0">
 				<span class="ml-2">Select a product.</span>
 			</div>
 		</div>
@@ -137,81 +137,81 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
-	export default {
-		components: {},
-		props: {
-			productsDetails: {
-				type: Object,
-				required: true
-			}
+export default {
+	components: {},
+	props: {
+		productsDetails: {
+			type: Object,
+			required: true
+		}
+	},
+	data() {
+		return {
+			minimised: false,
+			addedProducts: this.productsDetails,
+			productsList: [
+				{ name: 'Standard 1', type: 'standard' },
+				{ name: 'Standard 2', type: 'standard' },
+				{ name: 'Standard 3', type: 'standard' },
+				{ name: 'Standard 4', type: 'standard' },
+				{ name: 'Premium 1', type: 'premium' },
+				{ name: 'Premium 2', type: 'premium' },
+				{ name: 'Premium 3', type: 'premium' },
+				{ name: 'Premium 4', type: 'premium' }
+			],
+			previouslySelectedProducts: []
+		}
+	},
+	computed: {},
+	created() {},
+	methods: {
+		...mapActions('order', ['updateProducts']),
+		newProduct() {
+			this.addedProducts.products.push({
+				selected: [],
+				price: 0
+			})
 		},
-		data() {
-			return {
-				minimised: false,
-				addedProducts: this.productsDetails,
-				productsList: [
-					{ name: 'Standard 1', type: 'standard' },
-					{ name: 'Standard 2', type: 'standard' },
-					{ name: 'Standard 3', type: 'standard' },
-					{ name: 'Standard 4', type: 'standard' },
-					{ name: 'Premium 1', type: 'premium' },
-					{ name: 'Premium 2', type: 'premium' },
-					{ name: 'Premium 3', type: 'premium' },
-					{ name: 'Premium 4', type: 'premium' }
-				],
-				previouslySelectedProducts: []
-			}
-		},
-		computed: {},
-		created() {},
-		methods: {
-			...mapActions('order', ['updateProducts']),
-			newProduct() {
-				this.addedProducts.products.push({
-					selected: [],
-					price: 0
-				})
-			},
-			removeProduct(productNumber) {
-				this.addedProducts.totalCost =
+		removeProduct(productNumber) {
+			this.addedProducts.totalCost =
 					this.addedProducts.totalCost -
 					this.addedProducts.products[productNumber].price
-				this.addedProducts.products.splice(productNumber, 1)
-			},
-			calculateProductCost(fixedPrice, selectedNumber) {
-				let calculatedProductCost = 0
+			this.addedProducts.products.splice(productNumber, 1)
+		},
+		calculateProductCost(fixedPrice, selectedNumber) {
+			let calculatedProductCost = 0
 
-				// 3 min selected before price change
-				if (selectedNumber > 3)
-					calculatedProductCost = fixedPrice + (selectedNumber - 3)
-				else if (selectedNumber <= 3) calculatedProductCost = fixedPrice
-				else calculatedProductCost = 0
+			// 3 min selected before price change
+			if (selectedNumber > 3)
+				calculatedProductCost = fixedPrice + (selectedNumber - 3)
+			else if (selectedNumber <= 3) calculatedProductCost = fixedPrice
+			else calculatedProductCost = 0
 
-				return calculatedProductCost
-			},
-			updateSelected(val, productNumber) {
-				const isPremium =
+			return calculatedProductCost
+		},
+		updateSelected(val, productNumber) {
+			const isPremium =
 					val.length && val.some(({ type }) => type === 'premium')
-				const fixedPrice = isPremium ? 15 : 13
+			const fixedPrice = isPremium ? 15 : 13
 
-				// remove product[i] price from total cost before recalculating
-				this.addedProducts.totalCost =
+			// remove product[i] price from total cost before recalculating
+			this.addedProducts.totalCost =
 					this.addedProducts.totalCost -
 					this.addedProducts.products[productNumber].price
 
-				const price = this.calculateProductCost(fixedPrice, val.length)
-				this.addedProducts.products[productNumber].price = price
+			const price = this.calculateProductCost(fixedPrice, val.length)
+			this.addedProducts.products[productNumber].price = price
 
-				this.addedProducts.totalCost += this.addedProducts.products[
-					productNumber
-				].price
+			this.addedProducts.totalCost += this.addedProducts.products[
+				productNumber
+			].price
 
-				this.updateProducts(this.addedProducts)
-			}
+			this.updateProducts(this.addedProducts)
 		}
 	}
+}
 </script>
 
 <style lang="stylus" scoped>
