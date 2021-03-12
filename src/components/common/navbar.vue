@@ -34,39 +34,39 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				path: this.$route.path,
-				active: true,
-				navItems: [
-					{
-						path: '/create-order',
-						name: 'current-order',
-						title: 'Create Order',
-						icon: 'mdi-snowman'
-					},
-					{
-						path: '/current-orders',
-						name: 'current-orders',
-						title: 'Current Orders',
-						icon: 'mdi-new-box'
-					},
-					{
-						path: '/completed-orders',
-						name: 'completed-orders',
-						title: 'Completed Orders',
-						icon: 'mdi-archive'
-					}
-				]
-			}
-		},
-		computed: {},
-		created() {
-			// console.log(this.$route.path)
-		},
-		methods: {}
-	}
+export default {
+	data() {
+		return {
+			path: this.$route.path,
+			active: true,
+			navItems: [
+				{
+					path: '/create-order',
+					name: 'current-order',
+					title: 'Create Order',
+					icon: 'mdi-snowman'
+				},
+				{
+					path: '/current-orders',
+					name: 'current-orders',
+					title: 'Current Orders',
+					icon: 'mdi-new-box'
+				},
+				{
+					path: '/completed-orders',
+					name: 'completed-orders',
+					title: 'Completed Orders',
+					icon: 'mdi-archive'
+				}
+			]
+		}
+	},
+	computed: {},
+	created() {
+		// console.log(this.$route.path)
+	},
+	methods: {}
+}
 </script>
 
 <style lang="stylus" scoped>

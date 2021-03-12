@@ -23,25 +23,25 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			title: {
-				type: String,
-				required: true
-			}
-		},
-		data() {
-			return {
-				isDisabled: false,
-				items: [{ title: 'Sign out' }]
-			}
-		},
-		computed: {},
-		created() {
-			if (this.$route.path === '/') this.isDisabled = true
-		},
-		methods: {}
-	}
+export default {
+	props: {
+		title: {
+			type: String,
+			required: true
+		}
+	},
+	data() {
+		return {
+			isDisabled: false,
+			items: [{ title: 'Sign out' }]
+		}
+	},
+	computed: {},
+	created() {
+		if (this.$route.path === '/') this.isDisabled = true
+	},
+	methods: {}
+}
 </script>
 
 <style lang="stylus" scoped>

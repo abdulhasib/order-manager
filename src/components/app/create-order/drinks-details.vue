@@ -1,18 +1,20 @@
 <template>
 	<v-card class="order-card" outlined>
-		<v-card-title class="order-title">
-			Drinks Details
+		<v-card-title class="order-title my-2">
 			<v-btn
-				class="position-right mr-2"
+				class="d-flex justify-space-between position-right"
 				depressed
 				text
+				width="100%"
 				@click="minimised = !minimised"
 			>
+				<span>Drinks Details</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
+		<v-divider />
 
-		<div v-show="!minimised" class="product-details-form-section-container">
+		<div v-show="!minimised" class="drinks-details-form-section-container">
 			<v-row>
 				<v-col cols="12" md="4">
 					<v-card-text class="pt-4">
@@ -78,7 +80,7 @@
 
 		<div
 			v-show="minimised"
-			class="products-details-form-section-summary-container mx-2 my-4"
+			class="drinks-details-form-section-summary-container mx-2 my-4"
 		>
 			<div v-if="addedDrinks.selected.drinks.length" class="ml-4 mb-4">
 				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
@@ -99,81 +101,83 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
-	export default {
-		props: {
-			drinksDetails: {
-				type: Object,
-				required: true
-			}
+export default {
+	props: {
+		drinksDetails: {
+			type: Object,
+			required: true
+		}
+	},
+	data() {
+		return {
+			minimised: true,
+			addedDrinks: this.drinksDetails,
+			drinksRules: [(v) => v > -1 || 'Select Number of drinks or set to 0'],
+			selectedDrinksCount: [],
+			selectedDrinksTotalCost: 0,
+			drinksList: [
+				{ label: 'Pepsi', price: 1 },
+				{ label: 'Coke', price: 2 },
+				{ label: 'Fanta', price: 3 },
+				{ label: '7up', price: 4 }
+			]
+		}
+	},
+	computed: {},
+	mounted() {
+		this.drinksList.forEach(({ label }, index) =>
+			this.getselectedDrinksCount(label, index)
+		)
+	},
+	methods: {
+		...mapActions('order', ['updateDrinks']),
+		increment(drink, index) {
+			const count = this.selectedDrinksCount[index].count + 1
+			const price = this.drinksList[index].price
+			// const cost = price * count
+
+			this.selectedDrinksCount[index].count = count
+			// this.selectedDrinksCount[index].price = price
+			// this.selectedDrinksCount[index].cost = cost
+
+			this.addedDrinks.selected.drinks.push(drink)
+			this.addedDrinks.selected.totalCost += price
+			this.updateDrinks(this.addedDrinks)
 		},
-		data() {
-			return {
-				minimised: true,
-				addedDrinks: this.drinksDetails,
-				drinksRules: [(v) => v > -1 || 'Select Number of drinks or set to 0'],
-				selectedDrinksCount: [],
-				selectedDrinksTotalCost: 0,
-				drinksList: [
-					{ label: 'Pepsi', price: 1 },
-					{ label: 'Coke', price: 2 },
-					{ label: 'Fanta', price: 3 },
-					{ label: '7up', price: 4 }
-				]
-			}
-		},
-		computed: {},
-		mounted() {
-			this.drinksList.forEach(({ label }, index) =>
-				this.getselectedDrinksCount(label, index)
+		decrement(drink, index) {
+			const newCount = this.selectedDrinksCount[index].count - 1
+
+			// count does not go below 0
+			if (newCount < 0) return
+
+			this.selectedDrinksCount[index].count = newCount
+			this.addedDrinks.selected.drinks.splice(
+				this.addedDrinks.selected.drinks.indexOf(drink),
+				1
 			)
-		},
-		methods: {
-			...mapActions('order', ['updateDrinks']),
-			increment(drink, index) {
-				const count = this.selectedDrinksCount[index].count + 1
-				const price = this.drinksList[index].price
-				// const cost = price * count
 
-				this.selectedDrinksCount[index].count = count
-				// this.selectedDrinksCount[index].price = price
-				// this.selectedDrinksCount[index].cost = cost
-
-				this.addedDrinks.selected.drinks.push(drink)
-				this.addedDrinks.selected.totalCost += price
-				this.updateDrinks(this.addedDrinks)
-			},
-			decrement(drink, index) {
-				const newCount = this.selectedDrinksCount[index].count - 1
-				if (newCount < 0) return
-
-				this.selectedDrinksCount[index].count = newCount
-				this.addedDrinks.selected.drinks.splice(
-					this.addedDrinks.selected.drinks.indexOf(drink),
-					1
-				)
-
-				this.addedDrinks.selected.totalCost =
+			this.addedDrinks.selected.totalCost =
 					this.addedDrinks.selected.totalCost - this.drinksList[index].price
-				this.updateDrinks(this.addedDrinks)
-			},
-			getselectedDrinksCount(drink, index) {
-				const count = this.addedDrinks.selected.drinks.filter(
-					(v) => v === drink
-				).length
-				const price = this.drinksList[index].price
-				const cost = price * count
+			this.updateDrinks(this.addedDrinks)
+		},
+		getselectedDrinksCount(drink, index) {
+			const count = this.addedDrinks.selected.drinks.filter(
+				(v) => v === drink
+			).length
+			const price = this.drinksList[index].price
+			const cost = price * count
 
-				this.selectedDrinksCount.push({
-					name: drink,
-					count,
-					price,
-					cost
-				})
-			}
+			this.selectedDrinksCount.push({
+				name: drink,
+				count,
+				price,
+				cost
+			})
 		}
 	}
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -182,7 +186,7 @@
 		align-items: center;
 		justify-content: space-between
 
-	.product-details-form-section-container
+	.drinks-details-form-section-container
 		padding 1rem
 
 	.position-right
