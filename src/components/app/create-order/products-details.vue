@@ -17,7 +17,7 @@
 		<!--find out why v-show selects all checkboxes value of checkboxes were being created on the fly maybe, value is now an existing object-->
 		<div v-show="!minimised" class="products-details-form-section-container">
 			<v-row>
-				<v-col cols="12" md="4">
+				<v-col cols="12" sm="4">
 					<div>
 						<span class="caption">
 							Standard selections are £13. <br>
@@ -49,7 +49,7 @@
 											</v-btn>
 										</div>
 										<v-row>
-											<v-col cols="12" md="4">
+											<v-col cols="12" sm="4">
 												<div>
 													Standard
 													<div
@@ -126,7 +126,7 @@
 					<v-divider v-show="i !== 0"/>
 					<div v-show="product.length !== 0" class="my-4">
 						<div class="d-flex justify-space-between mb-1">
-							<span> Product {{ i + 1 }} </span>
+							<span class="body-2"> Product {{ i + 1 }} </span>
 							<span class="body-2 font-weight-light mr-2">
 								£{{ addedProducts.products[i].price }}
 							</span>

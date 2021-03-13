@@ -16,7 +16,7 @@
 
 		<div v-show="!minimised" class="drinks-details-form-section-container">
 			<v-row>
-				<v-col cols="12" md="4">
+				<v-col cols="12" sm="4">
 					<v-card-text class="pt-4">
 						<div>
 							<v-expand-transition appear>
@@ -28,7 +28,7 @@
 											</v-card-title>
 										</div>
 										<v-row>
-											<v-col cols="12" md="4">
+											<v-col cols="12" sm="4">
 												<v-container
 													v-if="selectedDrinksCount.length"
 													class="px-0"
@@ -85,10 +85,10 @@
 		>
 			<div v-show="addedDrinks.selected.drinks.length > 0" class="ml-4">
 				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
-					<v-col v-if="drink.count !== 0" cols="4" md="4">
+					<v-col v-if="drink.count !== 0" cols="4" sm="4">
 						<span> {{ drink.name }} </span>
 					</v-col>
-					<v-col v-if="drink.count !== 0" md="4" class="font-weight-light">
+					<v-col v-if="drink.count !== 0" sm="4" class="font-weight-light">
 						<span class="body-2"> x </span>
 						<span> {{ drink.count }} </span>
 					</v-col>
