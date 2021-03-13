@@ -111,7 +111,7 @@
 
 		<div
 			v-show="minimised"
-			class="products-details-form-section-summary-container mx-2 my-4"
+			class="products-details-form-section-summary-container mx-2"
 		>
 			<div
 				v-for="(product, i) in addedProducts.products"
@@ -122,8 +122,15 @@
 					v-show="addedProducts.products[i].selected.length > 0"
 					class="ml-4 mb-4"
 				>
-					<div v-show="product.length !== 0">
-						<span> Product {{ i + 1 }} </span>
+					<v-divider v-show="i !== 0"/>
+					<div v-show="product.length !== 0" class="my-4">
+						<div class="d-flex justify-space-between mb-1">
+							<span> Product {{ i + 1 }} </span>
+							<span class=" mr-2">
+								£{{ addedProducts.products[i].price }}
+							</span>
+						</div>
+
 						<div class="d-flex flex-wrap">
 							<div class="d-flex flex-wrap" style="width:100%">
 								<div
