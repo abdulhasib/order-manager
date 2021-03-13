@@ -126,7 +126,7 @@
 					<div v-show="product.length !== 0" class="my-4">
 						<div class="d-flex justify-space-between mb-1">
 							<span> Product {{ i + 1 }} </span>
-							<span class=" mr-2">
+							<span class="body-2 mr-2">
 								£{{ addedProducts.products[i].price }}
 							</span>
 						</div>

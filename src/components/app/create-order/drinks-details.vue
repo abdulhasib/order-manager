@@ -84,9 +84,12 @@
 		>
 			<div v-show="addedDrinks.selected.drinks.length > 0" class="ml-4">
 				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
-					<v-col v-if="drink.count !== 0" cols="6" md="4">
+					<v-col v-if="drink.count !== 0" cols="4" md="4">
 						<span> {{ drink.name }} </span>
-						<span> x {{ drink.count }} </span>
+					</v-col>
+					<v-col v-if="drink.count !== 0" md="4">
+						<span class="body-2"> x </span>
+						<span> {{ drink.count }} </span>
 					</v-col>
 				</v-row>
 			</div>
