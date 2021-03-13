@@ -84,12 +84,12 @@
 			class="drinks-details-form-section-summary-container mx-2 my-4"
 		>
 			<div v-show="addedDrinks.selected.drinks.length > 0" class="ml-4">
-				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i">
+				<v-row v-for="(drink, i) in selectedDrinksCount" :key="i" class="body-2">
 					<v-col v-if="drink.count !== 0" cols="4" sm="4">
 						<span> {{ drink.name }} </span>
 					</v-col>
 					<v-col v-if="drink.count !== 0" sm="4" class="font-weight-light">
-						<span class="body-2"> x </span>
+						<span> x </span>
 						<span> {{ drink.count }} </span>
 					</v-col>
 				</v-row>
