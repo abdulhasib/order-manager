@@ -89,7 +89,8 @@
 						<span> x {{ drink.count }} </span>
 					</v-col>
 				</v-row>
-				<div class="d-flex flex-row-reverse mr-2">
+				<v-divider />
+				<div class="d-flex flex-row-reverse mr-2 mt-4">
 					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
 				</div>
 			</div>
