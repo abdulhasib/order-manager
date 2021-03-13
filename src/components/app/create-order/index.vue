@@ -16,6 +16,10 @@
 				class="mb-4"
 				:drinks-details="createOrderForm.drinksDetails"
 			/>
+
+			<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
+				Order Total: £{{ totalOrderCost }}
+			</div>
 		</v-container>
 		<!-- </v-form> -->
 	</div>
@@ -41,8 +45,12 @@ export default {
 		}
 	},
 	computed: {
-		...mapState('order', ['createOrderForm'])
-	}
+		...mapState('order', ['createOrderForm']),
+		totalOrderCost() {
+			return this.createOrderForm.productsDetails.totalCost + this.createOrderForm.drinksDetails.selected.totalCost
+		}
+	},
+	methods: {}
 }
 </script>
 

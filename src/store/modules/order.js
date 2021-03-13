@@ -30,7 +30,8 @@ const state = {
 				drinks: [],
 				totalCost: 0
 			}
-		}
+		},
+		orderTotalCost: 0
 	}
 }
 
