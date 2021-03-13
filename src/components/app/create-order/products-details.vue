@@ -100,7 +100,8 @@
 									Add product
 								</v-flex>
 							</v-layout>
-							<div class="d-flex flex-row-reverse mr-2">
+							<v-divider />
+							<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
 								<span> Products Total: £{{ addedProducts.totalCost }} </span>
 							</div>
 						</div>
@@ -126,7 +127,7 @@
 					<div v-show="product.length !== 0" class="my-4">
 						<div class="d-flex justify-space-between mb-1">
 							<span> Product {{ i + 1 }} </span>
-							<span class="body-2 mr-2">
+							<span class="body-2 font-weight-light mr-2">
 								£{{ addedProducts.products[i].price }}
 							</span>
 						</div>
@@ -146,7 +147,7 @@
 				</div>
 			</div>
 			<v-divider />
-			<div class="d-flex flex-row-reverse mr-2 mt-4">
+			<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
 				<span> Products Total: £{{ addedProducts.totalCost }} </span>
 			</div>
 

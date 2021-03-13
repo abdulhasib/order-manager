@@ -17,7 +17,7 @@
 				:drinks-details="createOrderForm.drinksDetails"
 			/>
 
-			<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
+			<div class="d-flex flex-row-reverse body-1 font-weight-medium mr-2 mt-4">
 				Order Total: £{{ totalOrderCost }}
 			</div>
 		</v-container>

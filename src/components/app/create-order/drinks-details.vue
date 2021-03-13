@@ -67,7 +67,8 @@
 									</v-container>
 								</v-card>
 							</v-expand-transition>
-							<div class="d-flex flex-row-reverse mr-2">
+							<v-divider />
+							<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
 								<span>
 									Drinks Total: £{{ addedDrinks.selected.totalCost }}
 								</span>
@@ -87,14 +88,14 @@
 					<v-col v-if="drink.count !== 0" cols="4" md="4">
 						<span> {{ drink.name }} </span>
 					</v-col>
-					<v-col v-if="drink.count !== 0" md="4">
+					<v-col v-if="drink.count !== 0" md="4" class="font-weight-light">
 						<span class="body-2"> x </span>
 						<span> {{ drink.count }} </span>
 					</v-col>
 				</v-row>
 			</div>
 			<v-divider />
-				<div class="d-flex flex-row-reverse mr-2 mt-4">
+				<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
 					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
 				</div>
 			<div v-show="addedDrinks.selected.drinks.length === 0">
