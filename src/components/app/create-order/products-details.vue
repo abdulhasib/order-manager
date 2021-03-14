@@ -114,11 +114,7 @@
 			v-show="minimised"
 			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div
-				v-for="(product, i) in addedProducts.products"
-				v-show="minimised"
-				:key="i"
-			>
+			<div v-for="(product, i) in addedProducts.products" :key="i">
 				<div
 					v-show="addedProducts.products[i].selected.length > 0"
 					class="ml-4 mb-4"
@@ -144,11 +140,13 @@
 							</div>
 						</div>
 					</div>
+					<v-divider />
 				</div>
 			</div>
-			<v-divider />
-			<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
-				<span> Products Total: £{{ addedProducts.totalCost }} </span>
+			<div v-show="addedProducts.totalCost !== 0">
+				<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
+					<span> Products Total: £{{ addedProducts.totalCost }} </span>
+				</div>
 			</div>
 
 			<div v-show="addedProducts.products[0].selected.length === 0">

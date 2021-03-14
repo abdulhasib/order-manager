@@ -98,9 +98,12 @@
 					</v-col>
 				</v-row>
 			</div>
-			<v-divider />
-			<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
-				<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
+
+			<div v-show="addedDrinks.selected.totalCost !== 0">
+				<v-divider />
+				<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
+					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
+				</div>
 			</div>
 			<div v-show="addedDrinks.selected.drinks.length === 0">
 				<span class="ml-2">Select a drink.</span>
