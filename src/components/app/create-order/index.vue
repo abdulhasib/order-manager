@@ -5,7 +5,7 @@
 		<!-- <v-form> -->
 		<v-container>
 			<customer-details-form-section
-				class="mb-4"
+				class="mt-4 mb-4"
 				:customer-details="createOrderForm.customerDetails"
 			/>
 			<products-details-form-section
