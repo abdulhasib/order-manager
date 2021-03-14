@@ -123,7 +123,7 @@
 					v-show="addedProducts.products[i].selected.length > 0"
 					class="ml-4 mb-4"
 				>
-					<v-divider v-show="i !== 0"/>
+					<v-divider v-show="i !== 0" />
 					<div v-show="product.length !== 0" class="my-4">
 						<div class="d-flex justify-space-between mb-1">
 							<span class="body-2"> Product {{ i + 1 }} </span>

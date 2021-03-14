@@ -47,7 +47,10 @@ export default {
 	computed: {
 		...mapState('order', ['createOrderForm']),
 		totalOrderCost() {
-			return this.createOrderForm.productsDetails.totalCost + this.createOrderForm.drinksDetails.selected.totalCost
+			return (
+				this.createOrderForm.productsDetails.totalCost +
+					this.createOrderForm.drinksDetails.selected.totalCost
+			)
 		}
 	},
 	methods: {}
