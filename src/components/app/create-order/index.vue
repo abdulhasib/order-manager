@@ -4,15 +4,15 @@
 		<!-- {{ createOrderForm.productsDetails }} -->
 		<!-- <v-form> -->
 		<v-container>
-			<customer-details-form-section
+			<app-create-order-customer-details
 				class="mt-4 mb-4"
 				:customer-details="createOrderForm.customerDetails"
 			/>
-			<products-details-form-section
+			<app-create-order-products
 				class="mb-4"
 				:products-details="createOrderForm.productsDetails"
 			/>
-			<drinks-details-form-section
+			<app-create-order-drinks
 				class="mb-4"
 				:drinks-details="createOrderForm.drinksDetails"
 			/>
@@ -28,16 +28,16 @@
 <script>
 import { mapState } from 'vuex'
 import HeaderTop from '@/components/common/header.vue'
-import CustomerDetailsFormSection from './customer-details.vue'
-import ProductsDetailsFormSection from './products-details.vue'
-import DrinksDetailsFormSection from './drinks-details.vue'
+import AppCreateOrderCustomerDetails from './customer-details.vue'
+import AppCreateOrderProducts from './products.vue'
+import AppCreateOrderDrinks from './drinks.vue'
 
 export default {
 	components: {
 		HeaderTop,
-		CustomerDetailsFormSection,
-		ProductsDetailsFormSection,
-		DrinksDetailsFormSection
+		AppCreateOrderCustomerDetails,
+		AppCreateOrderProducts,
+		AppCreateOrderDrinks
 	},
 	data() {
 		return {

@@ -8,7 +8,7 @@
 				width="100%"
 				@click="minimised = !minimised"
 			>
-				<span>Drinks Details</span>
+				<span>Drinks</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
@@ -22,11 +22,6 @@
 							<v-expand-transition appear>
 								<v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
 									<v-container>
-										<div class="card-title-container">
-											<v-card-title class="product-title">
-												Drinks
-											</v-card-title>
-										</div>
 										<v-row>
 											<v-col cols="12" sm="4">
 												<v-container

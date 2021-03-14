@@ -8,7 +8,7 @@
 				width="100%"
 				@click="minimised = !minimised"
 			>
-				<span>Product Details</span>
+				<span>Products</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
