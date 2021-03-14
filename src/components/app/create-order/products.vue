@@ -40,7 +40,7 @@
 												Product {{ i + 1 }}
 											</v-card-title>
 											<v-btn
-												v-if="addedProducts.products.length > 1"
+												v-show="addedProducts.products.length > 1"
 												fab
 												small
 												@click="removeProduct(i)"

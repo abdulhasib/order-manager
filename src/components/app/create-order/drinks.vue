@@ -8,7 +8,7 @@
 				width="100%"
 				@click="minimised = !minimised"
 			>
-				<span>Drinks</span>
+				<span>Drinks Details</span>
 				<v-icon>{{ minimised ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
 			</v-btn>
 		</v-card-title>
@@ -84,10 +84,10 @@
 					:key="i"
 					class="body-2"
 				>
-					<v-col v-if="drink.count !== 0" cols="4" sm="4">
+					<v-col v-show="drink.count !== 0" cols="4" sm="4">
 						<span> {{ drink.name }} </span>
 					</v-col>
-					<v-col v-if="drink.count !== 0" sm="4" class="font-weight-light">
+					<v-col v-show="drink.count !== 0" sm="4" class="font-weight-light">
 						<span> x </span>
 						<span> {{ drink.count }} </span>
 					</v-col>
