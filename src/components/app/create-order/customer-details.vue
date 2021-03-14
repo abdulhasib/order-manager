@@ -86,7 +86,7 @@
 				<span> Last Name: {{ customerDetails.lastname }} </span><br>
 				<span> Number: {{ customerDetails.number }} </span><br>
 				<span>
-					Address: {{ customerDetails.address.line }}
+					Address: {{ customerDetails.address.line1 }}
 					{{ customerDetails.address.line2 }}
 					{{ customerDetails.address.city }}
 					{{ customerDetails.address.postcode }}
