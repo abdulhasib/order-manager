@@ -20,13 +20,17 @@
 			<div class="d-flex flex-row-reverse body-1 font-weight-medium mr-2 mt-4">
 				Order Total: £{{ totalOrderCost }}
 			</div>
+
+			<v-btn class="mt-12 mb-6" width="100%" @click="submit">
+				Create Order
+			</v-btn>
 		</v-container>
 		<!-- </v-form> -->
 	</div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import HeaderTop from '@/components/common/header.vue'
 import AppCreateOrderCustomerDetails from './customer-details.vue'
 import AppCreateOrderProducts from './products.vue'
@@ -49,11 +53,16 @@ export default {
 		totalOrderCost() {
 			return (
 				this.createOrderForm.productsDetails.totalCost +
-					this.createOrderForm.drinksDetails.selected.totalCost
+					this.createOrderForm.drinksDetails.totalCost
 			)
 		}
 	},
-	methods: {}
+	methods: {
+		...mapActions('order', ['createOrder']),
+		submit() {
+			this.createOrder()
+		}
+	}
 }
 </script>
 

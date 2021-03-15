@@ -26,10 +26,10 @@ const state = {
 			totalCost: 0
 		},
 		drinksDetails: {
-			selected: {
-				drinks: [],
-				totalCost: 0
-			}
+			drinks: {
+				selected: []
+			},
+			totalCost: 0
 		},
 		orderTotalCost: 0
 	}
@@ -77,6 +77,9 @@ const actions = {
 	},
 	async updateDrinks({ commit }, updatedDrinks) {
 		commit('setDrinks', updatedDrinks)
+	},
+	async createOrder({ commit }) {
+		console.log(state.createOrderForm)
 	}
 }
 

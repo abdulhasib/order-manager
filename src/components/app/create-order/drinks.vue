@@ -65,7 +65,7 @@
 							<v-divider />
 							<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
 								<span>
-									Drinks Total: £{{ addedDrinks.selected.totalCost }}
+									Drinks Total: £{{ addedDrinks.totalCost }}
 								</span>
 							</div>
 						</div>
@@ -78,7 +78,7 @@
 			v-show="minimised"
 			class="drinks-details-form-section-summary-container mx-2 my-4"
 		>
-			<div v-show="addedDrinks.selected.drinks.length > 0" class="ml-4">
+			<div v-show="addedDrinks.drinks.selected.length > 0" class="ml-4">
 				<v-row
 					v-for="(drink, i) in selectedDrinksCount"
 					:key="i"
@@ -94,13 +94,13 @@
 				</v-row>
 			</div>
 
-			<div v-show="addedDrinks.selected.totalCost !== 0">
+			<div v-show="addedDrinks.totalCost !== 0">
 				<v-divider />
 				<div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
-					<span> Drinks Total: £{{ addedDrinks.selected.totalCost }} </span>
+					<span> Drinks Total: £{{ addedDrinks.totalCost }} </span>
 				</div>
 			</div>
-			<div v-show="addedDrinks.selected.drinks.length === 0">
+			<div v-show="addedDrinks.drinks.selected.length === 0">
 				<span class="ml-2">Select a drink.</span>
 			</div>
 		</div>
@@ -149,8 +149,8 @@ export default {
 			// this.selectedDrinksCount[index].price = price
 			// this.selectedDrinksCount[index].cost = cost
 
-			this.addedDrinks.selected.drinks.push(drink)
-			this.addedDrinks.selected.totalCost += price
+			this.addedDrinks.drinks.selected.push(drink)
+			this.addedDrinks.totalCost += price
 			this.updateDrinks(this.addedDrinks)
 		},
 		decrement(drink, index) {
@@ -160,17 +160,17 @@ export default {
 			if (newCount < 0) return
 
 			this.selectedDrinksCount[index].count = newCount
-			this.addedDrinks.selected.drinks.splice(
-				this.addedDrinks.selected.drinks.indexOf(drink),
+			this.addedDrinks.drinks.selected.splice(
+				this.addedDrinks.drinks.selected.indexOf(drink),
 				1
 			)
 
-			this.addedDrinks.selected.totalCost =
-					this.addedDrinks.selected.totalCost - this.drinksList[index].price
+			this.addedDrinks.totalCost =
+					this.addedDrinks.totalCost - this.drinksList[index].price
 			this.updateDrinks(this.addedDrinks)
 		},
 		getselectedDrinksCount(drink, index) {
-			const count = this.addedDrinks.selected.drinks.filter(
+			const count = this.addedDrinks.drinks.selected.filter(
 				(v) => v === drink
 			).length
 			const price = this.drinksList[index].price
