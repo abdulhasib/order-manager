@@ -204,10 +204,9 @@ export default {
 			let calculatedProductCost = 0
 
 			// 3 min selected before price change
-			if (selectedNumber > 3)
+			if (selectedNumber >= 4)
 				calculatedProductCost = fixedPrice + (selectedNumber - 3)
-			else if (selectedNumber <= 3) calculatedProductCost = fixedPrice
-			else calculatedProductCost = 0
+			else if (selectedNumber > 0) calculatedProductCost = fixedPrice
 
 			return calculatedProductCost
 		},
