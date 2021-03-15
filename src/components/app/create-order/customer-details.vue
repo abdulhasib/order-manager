@@ -81,7 +81,7 @@
 			v-show="minimised"
 			class="products-details-form-section-summary-container mx-2 my-4"
 		>
-			<div class="ml-4 mb-4">
+			<div class="body-2 ml-4 mb-4">
 				<span> First Name: {{ customerDetails.firstname }} </span><br>
 				<span> Last Name: {{ customerDetails.lastname }} </span><br>
 				<span> Number: {{ customerDetails.number }} </span><br>

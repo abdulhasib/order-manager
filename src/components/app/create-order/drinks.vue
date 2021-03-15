@@ -101,7 +101,7 @@
 				</div>
 			</div>
 			<div v-show="addedDrinks.drinks.selected.length === 0">
-				<span class="ml-2">Select a drink.</span>
+				<span class="body-2 ml-2">Select a drink.</span>
 			</div>
 		</div>
 	</v-card>

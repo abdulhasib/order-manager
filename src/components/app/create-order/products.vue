@@ -150,7 +150,7 @@
 			</div>
 
 			<div v-show="addedProducts.products[0].selected.length === 0">
-				<span class="ml-2">Select a product.</span>
+				<span class="body-2 ml-2">Select a product.</span>
 			</div>
 		</div>
 	</v-card>
