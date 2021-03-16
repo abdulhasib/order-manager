@@ -64,9 +64,7 @@
 							</v-expand-transition>
 							<v-divider />
 							<div class="d-flex flex-row-reverse font-weight-medium mr-2 mt-4">
-								<span>
-									Drinks Total: £{{ addedDrinks.totalCost }}
-								</span>
+								<span> Drinks Total: £{{ addedDrinks.totalCost }} </span>
 							</div>
 						</div>
 					</v-card-text>
