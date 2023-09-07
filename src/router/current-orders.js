@@ -1,7 +1,7 @@
 export default [
-	{
-		path: '/current-orders',
-		name: 'app-current-orders',
-		component: () => import('@/components/app/current-orders/index.vue')
-	}
+  {
+    path: '/current-orders',
+    name: 'current-orders',
+    component: () => import('@/views/CurrentOrdersView.vue')
+  }
 ]

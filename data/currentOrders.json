@@ -1,0 +1,86 @@
+[
+	{
+		"created": "2023-08-27 18:00:00.000",
+		"modified": "2023-08-27 19:00:00.000",
+		"assignedTo": {
+			"firstname": "emp",
+			"lastname": "loyee"
+		},
+		"status": "In Progress",
+		"order": {
+			"id": 1,
+			"customerDetails": {
+					"firstname": "a",
+					"lastname": "b",
+					"number": "12345",
+					"address": {
+							"line1": "z",
+							"line2": "x",
+							"city": "c",
+							"postcode": "a11bc"
+					}
+			},
+			"productsDetails": {
+					"products": [
+							{
+									"selected": [
+											{
+													"name": "Standard 1",
+													"type": "standard"
+											},
+											{
+													"name": "Standard 2",
+													"type": "standard"
+											},
+											{
+													"name": "Standard 3",
+													"type": "standard"
+											}
+									],
+									"price": 13
+							},
+							{
+									"selected": [
+											{
+													"name": "Premium 1",
+													"type": "premium"
+											},
+											{
+													"name": "Standard 2",
+													"type": "standard"
+											},
+											{
+													"name": "Premium 2",
+													"type": "premium"
+											},
+											{
+													"name": "Standard 3",
+													"type": "standard"
+											}
+									],
+									"price": 16
+							}
+					],
+					"totalCost": 29
+			},
+			"drinksDetails": {
+					"drinks": [
+							{
+									"selected": [
+											"Fanta"
+									],
+									"price": 3
+							},
+							{
+									"selected": [
+											"Coke"
+									],
+									"price": 2
+							}
+					],
+					"totalCost": 7
+			},
+			"orderTotalCost": 36
+		}
+	}
+]

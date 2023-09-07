@@ -1,7 +1,7 @@
 export default [
-	{
-		path: '/create-order',
-		name: 'app-create-order',
-		component: () => import('@/components/app/create-order/index.vue')
-	}
+  {
+    path: '/create-order',
+    name: 'create-order',
+    component: () => import('@/views/CreateOrderView.vue')
+  }
 ]

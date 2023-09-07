@@ -1,19 +1,18 @@
-import Vue from 'vue'
+//import './assets/main.css'
+
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
 import App from './App.vue'
-import router from '@/router'
-import store from '@/store'
-// import apolloProvider from '@/plugins/apollo'
-import './registerServiceWorker'
+import router from './router'
+
+// Vuetify
 import vuetify from '@/plugins/vuetify'
 
-Vue.config.productionTip = false
+const app = createApp(App)
 
-new Vue({
-	vuetify,
-	router,
-	store,
-	// apolloProvider,
-	render: (h) => h(App)
-}).$mount('#app')
+app.use(vuetify)
+app.use(createPinia())
+app.use(router)
 
-// classes mjs
+app.mount('#app')
