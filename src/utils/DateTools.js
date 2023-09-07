@@ -22,3 +22,4 @@ export default class DateHelper {
     return `${newDate} ${newTime}`
   }
 }
+
