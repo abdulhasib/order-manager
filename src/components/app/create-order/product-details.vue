@@ -211,4 +211,10 @@ const updateSelected = (productNumber) => {
 
 :deep(.product-checkbox .v-label)
 	font-size 12px
+
+:deep(.v-selection-control__input)
+	justify-content flex-start
+
+:deep(.v-selection-control__wrapper)
+	margin-right -0.5rem
 </style>

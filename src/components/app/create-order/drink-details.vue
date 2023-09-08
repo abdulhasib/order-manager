@@ -85,7 +85,6 @@ onMounted(() => {
       </v-btn>
     </div>
     <v-divider />
-    <v-divider />
 
     <div v-show="!minimised" class="drinks-details-form-section-container">
       <v-row>
