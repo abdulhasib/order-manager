@@ -27,7 +27,7 @@ const updateInput = (fieldName, value) =>
   <v-card color="#dbd9d9" class="order-card" outlined>
     <div class="order-title mt-2">
       <v-btn
-        class="d-flex justify-space-between position-right"
+        class="d-flex justify-space-between position-right text-body-2"
         depressed
         text
         width="100%"

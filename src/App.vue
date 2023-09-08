@@ -1,15 +1,15 @@
 <script setup>
-import { RouterView } from 'vue-router'
-
-console.log(RouterView)
-
 import PageHeader from '@/components/common/PageHeader.vue'
 //import PageFooter from '@/components/common/PageFooter.vue'
 import NavBar from '@/components/common/NavBar.vue'
+
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
 </script>
 
 <template>
-  <PageHeader title="112" />
+  <PageHeader :title="route.name" />
   <v-app id="app">
     <v-main>
       <v-container id="container">

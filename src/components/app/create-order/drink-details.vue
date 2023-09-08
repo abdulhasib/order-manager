@@ -74,7 +74,7 @@ onMounted(() => {
   <v-card color="#dbd9d9" class="order-card" outlined>
     <div class="order-title mt-2">
       <v-btn
-        class="d-flex justify-space-between"
+        class="d-flex justify-space-between text-body-2"
         depressed
         text
         width="100%"

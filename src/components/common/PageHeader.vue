@@ -3,7 +3,7 @@
     <v-btn v-model="isDisabled" to="/" icon>
       <v-icon>mdi-home</v-icon>
     </v-btn>
-    <v-toolbar-title class="headline font-weight-medium">
+    <v-toolbar-title class="headline font-weight-medium text-body-1">
       {{ title }}
     </v-toolbar-title>
     <v-spacer />
