@@ -217,4 +217,7 @@ const updateSelected = (productNumber) => {
 
 :deep(.v-selection-control__wrapper)
 	margin-right -0.5rem
+
+:deep(.v-card-text)
+	padding 0
 </style>

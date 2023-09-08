@@ -23,7 +23,7 @@ const route = useRoute()
   <!--<PageFooter />-->
 </template>
 
-<style lang="stylus" scope>
+<style lang="stylus" scoped>
 #container
 	padding: 0
 	position:absolute

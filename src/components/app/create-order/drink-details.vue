@@ -203,4 +203,7 @@ onMounted(() => {
 :deep(input::-webkit-inner-spin-button)
 	-webkit-appearance none
 	margin 0
+
+:deep(.v-card-text)
+	padding 0 !important
 </style>
