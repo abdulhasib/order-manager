@@ -27,7 +27,7 @@ import { RouterLink } from 'vue-router'
             >
               <span>
                 <v-icon :icon="item.icon" />
-                {{ item.title }}
+                <span class="text-caption">{{ item.name }}</span>
               </span>
             </v-btn>
           </RouterLink>
@@ -47,20 +47,17 @@ export default {
       navItems: [
         {
           path: '/create-order',
-          name: 'create-order',
-          title: 'Create Order',
+          name: 'Create Order',
           icon: 'mdi-new-box'
         },
         {
           path: '/current-orders',
-          name: 'current-orders',
-          title: 'Current Orders',
+          name: 'Current Orders',
           icon: 'mdi-restart' //cached?
         },
         {
           path: '/completed-orders',
-          name: 'completed-orders',
-          title: 'Completed Orders',
+          name: 'Completed Orders',
           icon: 'mdi-archive'
         }
       ]
@@ -105,16 +102,16 @@ export default {
 .router-link-active
 	display block
 	height 100%
-	background-color #40545e
+	background-color #273339
 	a
 		span
 			color white
 
-.v-btn
+.button
 	height 100% !important
 	width 100% !important
 	max-width inherit !important
-
-.v-icon
-	width auto
+	padding 0 !important
+	.v-icon
+		width auto
 </style>

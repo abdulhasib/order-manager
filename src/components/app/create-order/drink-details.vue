@@ -71,7 +71,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-card class="order-card" outlined>
+  <v-card color="#dbd9d9" class="order-card" outlined>
     <div class="order-title mt-2">
       <v-btn
         class="d-flex justify-space-between"
@@ -106,18 +106,24 @@ onMounted(() => {
                             :key="index"
                             class="d-flex align-center justify-space-between"
                           >
+                            <div class="d-flex flex-column">
+                              <v-btn
+                                class="mt-1"
+                                size="x-small"
+                                density="comfortable"
+                                icon="mdi-minus"
+                                @click="decrement(drink.label, index)"
+                              />
+                            </div>
+
                             <v-text-field
                               v-model="selectedDrinksCount[index].count"
                               :label="drink.label"
                               type="number"
                               min="0"
-                              append-outer-icon="add"
-                              prepend-icon="remove"
                               oninput="validity.valid||(value='');"
                               :rules="drinksRules"
-                              style="max-width: 10rem"
-                              @click:append="increment(drink.label, index)"
-                              @click:prepend="decrement(drink.label, index)"
+                              style="max-width: 4rem"
                               @input="
                                 updateCounterDebounce(
                                   index,
@@ -127,20 +133,13 @@ onMounted(() => {
                               "
                             />
 
-                            <div class="d-flex flex-column mr-auto ml-5">
+                            <div class="d-flex flex-column mr-8">
                               <v-btn
                                 class="mb-1"
                                 size="x-small"
                                 density="comfortable"
                                 icon="mdi-plus"
                                 @click="increment(drink.label, index)"
-                              />
-                              <v-btn
-                                class="mt-1"
-                                size="x-small"
-                                density="comfortable"
-                                icon="mdi-minus"
-                                @click="decrement(drink.label, index)"
                               />
                             </div>
                             <div>
@@ -163,7 +162,10 @@ onMounted(() => {
       </v-row>
     </div>
 
-    <div v-show="minimised" class="drinks-details-form-section-summary-container mx-2 my-4">
+    <div
+      v-show="minimised"
+      class="drinks-details-form-section-summary-container mx-2 my-4 text-caption"
+    >
       <div v-show="drinksDetails.drinks.length > 0" class="ml-4">
         <v-row v-for="(drink, i) in selectedDrinksCount" :key="i" class="body-2">
           <v-col v-show="drink.count !== 0" cols="4" sm="4">

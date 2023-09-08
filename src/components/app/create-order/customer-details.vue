@@ -24,7 +24,7 @@ const updateInput = (fieldName, value) =>
 </script>
 
 <template>
-  <v-card class="order-card" outlined>
+  <v-card color="#dbd9d9" class="order-card" outlined>
     <div class="order-title mt-2">
       <v-btn
         class="d-flex justify-space-between position-right"
@@ -43,14 +43,14 @@ const updateInput = (fieldName, value) =>
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
-            label="First name"
+            label="First Name"
             required
             @input="updateInput('firstname', $event.target.value)"
           />
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
-            label="Last name"
+            label="Last Name"
             required
             @input="updateInput('lastname', $event.target.value)"
           />
@@ -98,7 +98,10 @@ const updateInput = (fieldName, value) =>
       </v-row>
     </div>
 
-    <div v-show="minimised" class="products-details-form-section-summary-container mx-2 my-4">
+    <div
+      v-show="minimised"
+      class="products-details-form-section-summary-container mx-2 my-4 text-caption"
+    >
       <div class="body-2 ml-4 mb-4">
         <span> First Name: {{ customerDetails.firstname }} </span><br />
         <span> Last Name: {{ customerDetails.lastname }} </span><br />

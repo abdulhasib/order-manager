@@ -56,7 +56,7 @@ const updateSelected = (productNumber) => {
 </script>
 
 <template>
-  <v-card class="order-card" outlined>
+  <v-card color="#dbd9d9" class="order-card" outlined>
     <div class="order-title mt-2">
       <v-btn
         class="d-flex justify-space-between"
@@ -76,11 +76,9 @@ const updateSelected = (productNumber) => {
       <v-row>
         <v-col cols="12" sm="12">
           <div>
-            <span class="caption">
-              Standard selections are £13. <br />
-              If premium is selected product price will be 15. <br />
-              Up to 3 flavours. If selection exceeds 3, a charge of £1 will be added per extra
-              selection.
+            <span class="text-caption">
+              Standard selections are £13. Premium selections are £15. Up to 3 options. <br />
+              If selection exceeds 3, a charge of £1 will be added per extra selection.
             </span>
           </div>
           <v-card-text class="pt-4">
@@ -89,7 +87,7 @@ const updateSelected = (productNumber) => {
                 <v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
                   <v-container>
                     <div class="card-title-container">
-                      <v-card-title class="product-title p-0 pb-5">
+                      <v-card-title class="product-title pl-0 pb-5">
                         Product {{ i + 1 }}
                       </v-card-title>
                       <v-btn
@@ -102,7 +100,7 @@ const updateSelected = (productNumber) => {
                       </v-btn>
                     </div>
                     <v-row>
-                      <v-col class="d-flex justify-space-between" cols="12" sm="10">
+                      <v-col class="d-flex justify-space-between" cols="12" sm="12">
                         <div>
                           Standard
                           <div v-for="(item, index1) in productsList" :key="index1">
@@ -112,6 +110,7 @@ const updateSelected = (productNumber) => {
                               :label="item.name"
                               :value="item"
                               @change="updateSelected(i)"
+                              class="product-checkbox"
                             />
                           </div>
                         </div>
@@ -124,6 +123,7 @@ const updateSelected = (productNumber) => {
                               :label="item.name"
                               :value="item"
                               @change="updateSelected(i)"
+                              class="product-checkbox"
                             />
                           </div>
                         </div>
@@ -137,10 +137,9 @@ const updateSelected = (productNumber) => {
               </v-expand-transition>
               <v-layout flex justify-center wrap>
                 <div class="mb-3">
-                  <v-btn fab small @click="newProduct()">
+                  <v-btn density="comfortable" fab small @click="newProduct()">
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
-                  Add product
                 </div>
               </v-layout>
               <v-divider />
@@ -153,7 +152,10 @@ const updateSelected = (productNumber) => {
       </v-row>
     </div>
 
-    <div v-show="minimised" class="products-details-form-section-summary-container mx-2 my-4">
+    <div
+      v-show="minimised"
+      class="products-details-form-section-summary-container mx-2 my-4 text-caption"
+    >
       <div v-for="(product, i) in productsDetails.products" :key="i">
         <div v-show="productsDetails.products[i].selected.length > 0" class="ml-4 mb-4">
           <v-divider v-show="i !== 0" />
@@ -195,19 +197,18 @@ const updateSelected = (productNumber) => {
 
 <style lang="stylus" scoped>
 .card-title-container
-	display: flex;
-	align-items: center;
-	justify-content: space-between
+	display flex
+	align-items center
+	justify-content space-between
 
 .products-details-form-section-container
 	padding 1rem
 
 .products-details-form-section-summary
-	display: flex
+	display flex
 	justify-content center
 	min-width 100px
 
-.position-right
-	position absolute
-	right 0
+:deep(.product-checkbox .v-label)
+	font-size 12px
 </style>

@@ -4,7 +4,7 @@ import AppCurrentOrdersOrdersList from '@/components/app/current-orders/orders-l
 
 import { ref, onMounted } from 'vue'
 
-const isloaded = ref(true)
+const isloaded = ref(false)
 //const data = reactive([])
 
 onMounted(async () => {
@@ -29,24 +29,26 @@ const { currentOrders } = storeToRefs(useOrderStore())
       <PageLoader />
     </template>
     <template v-else>
-      <div class="overall-info-card" outlined>
-        <v-list-subheader class="order-title font-weight-medium">
-          <span class="orders-length">
-            {{ currentOrders.length }}
-          </span>
-          <span> New Orders </span>
-        </v-list-subheader>
-      </div>
+      <v-card class="overall-info-card-container" outlined>
+        <div class="overall-info-card" outlined>
+          <v-list-subheader class="order-title font-weight-medium">
+            <span class="orders-length">
+              {{ currentOrders.length }}
+            </span>
+            <span> New Orders </span>
+          </v-list-subheader>
+        </div>
+      </v-card>
       <AppCurrentOrdersOrdersList :data="currentOrders" />
     </template>
   </div>
 </template>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+.overall-info-card-container
+  margin 0.5rem
 .overall-info-card
-	margin 0.5rem 1rem 0 1rem
-	.order-title
-		padding 0 0.5rem
-		.orders-length
-			margin 0 0.25rem 0 0
+  background-color: #ededed
+.order-title
+  padding 0 0.5rem
 </style>

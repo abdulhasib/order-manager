@@ -1,10 +1,15 @@
 <script setup>
 import { RouterView } from 'vue-router'
 
+console.log(RouterView)
+
+import PageHeader from '@/components/common/PageHeader.vue'
+//import PageFooter from '@/components/common/PageFooter.vue'
 import NavBar from '@/components/common/NavBar.vue'
 </script>
 
 <template>
+  <PageHeader title="112" />
   <v-app id="app">
     <v-main>
       <v-container id="container">
@@ -15,12 +20,10 @@ import NavBar from '@/components/common/NavBar.vue'
     </v-main>
     <NavBar />
   </v-app>
+  <!--<PageFooter />-->
 </template>
 
 <style lang="stylus" scope>
-#app
-	background: #f5f5f5
-
 #container
 	padding: 0
 	position:absolute
@@ -29,4 +32,5 @@ import NavBar from '@/components/common/NavBar.vue'
 	left:0px
 	right:0px
 	overflow auto
+	background-color #f5f5f5
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div>
     <div v-for="(item, i) in data" :key="i" exact class="cards-container">
-      <v-card class="order-card" elevation="5" outlined>
-        <v-card-title class="order-title"> Order Number: {{ item.id }} </v-card-title>
+      <v-card color="#ededed" class="order-card" elevation="5" outlined>
+        <v-card-title class="order-title text-body-1">
+          Order Number: {{ item.order.id }}
+        </v-card-title>
 
-        <v-card-text class="order-text">
+        <v-card-text class="order-text text-caption">
           <div>
             Assigned to:
             <span v-if="item.assignedTo">
@@ -22,7 +24,6 @@
 
         <v-card-subtitle class="order-subtitle">
           <span> Created at: {{ item.created }} </span>
-          <br />
           <span> Modified at: {{ item.modified }} </span>
         </v-card-subtitle>
       </v-card>
@@ -49,7 +50,14 @@ export default {
 <style lang="stylus" scoped>
 .order-card
 		margin 1rem 0
+		padding 0.25rem 0
 
 .cards-container
 	padding 0 0.5rem
+
+.order-subtitle
+	padding 0 0.5rem
+	font-size 0.5rem
+	display flex
+	justify-content space-between
 </style>
