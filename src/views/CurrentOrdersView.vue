@@ -3,6 +3,8 @@ import PageLoader from '@/components/common/PageLoader.vue'
 import AppCurrentOrdersOrdersList from '@/components/app/current-orders/orders-list.vue'
 
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useOrderStore } from '@/stores/order'
 
 const isloaded = ref(false)
 //const data = reactive([])
@@ -11,9 +13,6 @@ onMounted(async () => {
   await fetch()
   isloaded.value = true
 })
-
-import { storeToRefs } from 'pinia'
-import { useOrderStore } from '@/stores/order'
 
 const orderStore = useOrderStore()
 
@@ -35,7 +34,7 @@ const { currentOrders } = storeToRefs(useOrderStore())
             <span class="orders-length">
               {{ currentOrders.length }}
             </span>
-            <span> New Orders </span>
+            <span> Current Orders </span>
           </v-list-subheader>
         </div>
       </v-card>

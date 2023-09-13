@@ -5,8 +5,14 @@ import * as directives from 'vuetify/directives'
 import { createVuetify } from 'vuetify'
 import colors from 'vuetify/lib/util/colors'
 
+import { VDataTable, VDataTableServer } from 'vuetify/labs/VDataTable'
+
 export default createVuetify({
-  components,
+  components: {
+    ...components,
+    VDataTable,
+    VDataTableServer
+  },
   directives,
   theme: {
     themes: {

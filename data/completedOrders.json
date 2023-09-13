@@ -3,11 +3,12 @@
 		"id": 1,
 		"created": "2023-08-27 18:00:00.000",
 		"modified": "2023-08-27 19:00:00.000",
+		"completed": "2023-08-27 18:00:00.000",
 		"assignedTo": {
 			"firstname": "emp",
 			"lastname": "loyee"
 		},
-		"status": "In Progress",
+		"status": "Completed",
 		"order": {
 			"customerDetails":{
 				"firstname":"Ali",
@@ -107,11 +108,12 @@
 		"id": 2,
 		"created": "2023-08-27 18:00:00.000",
 		"modified": "2023-08-27 19:00:00.000",
+		"completed": "2023-08-27 19:00:00.000",
 		"assignedTo": {
 			"firstname": "John",
 			"lastname": "Smith"
 		},
-		"status": "In Progress",
+		"status": "Completed",
 		"order": {
 			"customerDetails":{
 				"firstname":"Customer",

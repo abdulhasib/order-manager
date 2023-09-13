@@ -15,6 +15,7 @@ import DateTools from '@/utils/DateTools'
 export const useOrderStore = defineStore('OrderStore', {
   state: () => ({
     currentOrders: [],
+    completedOrders: [],
     createOrderForm: {
       customerDetails: {
         firstname: '',
@@ -69,6 +70,16 @@ export const useOrderStore = defineStore('OrderStore', {
         return order
       })
       this.currentOrders = formattedOrder
+    },
+    async fetchCompletedOrders() {
+      const { default: orderList } = await import('../../data/completedOrders.json')
+      const formattedOrder = orderList.map((order) => {
+        order.modified = DateTools.formatDate(order.modified)
+        order.created = DateTools.formatDate(order.created)
+        order.completed = DateTools.formatDate(order.completed)
+        return order
+      })
+      this.completedOrders = formattedOrder
     },
     async createOrder() {
       console.log(this.createOrderForm)

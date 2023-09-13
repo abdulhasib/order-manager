@@ -1,4 +1,6 @@
 <script setup>
+import DrinksDetails from '@/components/common/DrinksDetails.vue'
+
 import { ref, reactive, onMounted } from 'vue'
 import { useOrderStore } from '@/stores/order'
 import { debounce } from '@/utils/utility'
@@ -22,17 +24,21 @@ const increment = (drink, index) => {
   const price = drinksList[index].price
 
   selectedDrinksCount[index].count = count
-  drinksDetails.drinks.push({ selected: [drink], price })
+  const existingDrink = drinksDetails.drinks.find((d) => d.selected === drink)
+
+  if (existingDrink) existingDrink.count++
+  else drinksDetails.drinks.push({ selected: drink, price, count })
+
   drinksDetails.totalCost = calculateTotalCost()
 }
 
 const decrement = (drink, index) => {
   const newCount = parseInt(selectedDrinksCount[index].count) - 1
   // count does not go below 0
-  if (newCount < 0) return
+  if (newCount <= 0) return drinksDetails.drinks.splice(drinksDetails.drinks.indexOf(drink), 1)
 
   selectedDrinksCount[index].count = newCount
-  drinksDetails.drinks.splice(drinksDetails.drinks.indexOf(drink), 1)
+  drinksDetails.drinks.find((d) => d.selected === drink).count--
   drinksDetails.totalCost = calculateTotalCost()
 }
 
@@ -40,7 +46,8 @@ const updateCounter = (index, drink, count = parseInt(count)) => {
   const price = drinksList[index].price
   drinksDetails.drinks = drinksDetails.drinks.filter((d) => !d.selected.includes(drink))
 
-  for (let i = 0; i < count; i++) drinksDetails.drinks.push({ selected: [drink], price })
+  if (count <= 0) return
+  drinksDetails.drinks.push({ selected: drink, price, count })
   drinksDetails.totalCost = calculateTotalCost()
 }
 
@@ -72,7 +79,7 @@ onMounted(() => {
 
 <template>
   <v-card color="#dbd9d9" class="order-card" outlined>
-    <div class="order-title mt-2">
+    <div class="order-title mt-2 mx-1">
       <v-btn
         class="d-flex justify-space-between text-body-2"
         depressed
@@ -96,7 +103,7 @@ onMounted(() => {
                   <v-container>
                     <v-row>
                       <v-col cols="12" sm="10">
-                        <v-container v-if="selectedDrinksCount.length" class="px-0" fluid>
+                        <v-container class="pl-6 pr-6 px-0" v-if="selectedDrinksCount.length" fluid>
                           <div class="d-flex flex-row-reverse">
                             <span>Price</span>
                           </div>
@@ -161,41 +168,13 @@ onMounted(() => {
       </v-row>
     </div>
 
-    <div
-      v-show="minimised"
-      class="drinks-details-form-section-summary-container mx-2 my-4 text-caption"
-    >
-      <div v-show="drinksDetails.drinks.length > 0" class="ml-4">
-        <v-row v-for="(drink, i) in selectedDrinksCount" :key="i" class="body-2">
-          <v-col v-show="drink.count !== 0" cols="4" sm="4">
-            <span> {{ drink.name }} </span>
-          </v-col>
-          <v-col v-show="drink.count !== 0" sm="4" class="font-weight-light">
-            <span> x </span>
-            <span> {{ drink.count }} </span>
-          </v-col>
-        </v-row>
-      </div>
-
-      <div v-show="drinksDetails.totalCost !== 0">
-        <v-divider />
-        <div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
-          <span> Drinks Total: £{{ drinksDetails.totalCost }} </span>
-        </div>
-      </div>
-      <div v-show="drinksDetails.drinks.length === 0">
-        <span class="body-2 ml-2">Select drinks.</span>
-      </div>
+    <div class="mx-2 my-4 text-caption">
+      <DrinksDetails :minimised="minimised" :drinksDetails="drinksDetails" />
     </div>
   </v-card>
 </template>
 
 <style lang="stylus" scoped>
-.card-title-container
-	display flex
-	align-items center
-	justify-content space-between
-
 .drinks-details-form-section-container
 	padding 1rem
 

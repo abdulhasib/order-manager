@@ -1,20 +1,12 @@
 <script setup>
+import CustomerDetails from '@/components/common/CustomerDetails.vue'
+
 import { ref } from 'vue'
-//import { ref, reactive, computed } from 'vue'
 import { useOrderStore } from '@/stores/order'
 
 import ObjectHelper from '@/utils/ObjectHelper'
 
-//const props = defineProps(['customerDetails'])
-//defineProps({
-//	customerDetails: {
-//			type: Object,
-//			required: true
-//		}
-//})
-
 const minimised = ref(true)
-//const bar = reactive({ name: "hi" });
 
 let {
   createOrderForm: { customerDetails }
@@ -25,7 +17,7 @@ const updateInput = (fieldName, value) =>
 
 <template>
   <v-card color="#dbd9d9" class="order-card" outlined>
-    <div class="order-title mt-2">
+    <div class="order-title mt-2 mx-1">
       <v-btn
         class="d-flex justify-space-between position-right text-body-2"
         depressed
@@ -44,6 +36,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="First Name"
+            variant="solo-filled"
             required
             @input="updateInput('firstname', $event.target.value)"
           />
@@ -51,6 +44,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="Last Name"
+            variant="solo-filled"
             required
             @input="updateInput('lastname', $event.target.value)"
           />
@@ -59,6 +53,7 @@ const updateInput = (fieldName, value) =>
           <v-text-field
             :counter="11"
             label="Phone Number"
+            variant="solo-filled"
             required
             @input="updateInput('number', $event.target.value)"
           />
@@ -70,6 +65,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="Address 1"
+            variant="solo-filled"
             required
             @input="updateInput('address.line1', $event.target.value)"
           />
@@ -77,6 +73,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="Address 2"
+            variant="solo-filled"
             required
             @input="updateInput('address.line2', $event.target.value)"
           />
@@ -84,6 +81,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="City"
+            variant="solo-filled"
             required
             @input="updateInput('address.city', $event.target.value)"
           />
@@ -91,6 +89,7 @@ const updateInput = (fieldName, value) =>
         <v-col cols="12" md="4">
           <v-text-field
             label="Postcode"
+            variant="solo-filled"
             required
             @input="updateInput('address.postcode', $event.target.value)"
           />
@@ -98,54 +97,11 @@ const updateInput = (fieldName, value) =>
       </v-row>
     </div>
 
-    <div
-      v-show="minimised"
-      class="products-details-form-section-summary-container mx-2 my-4 text-caption"
-    >
-      <div class="body-2 ml-4 mb-4">
-        <span> First Name: {{ customerDetails.firstname }} </span><br />
-        <span> Last Name: {{ customerDetails.lastname }} </span><br />
-        <span> Number: {{ customerDetails.number }} </span><br />
-        <span>
-          Address: {{ customerDetails.address.line1 }}
-          {{ customerDetails.address.line2 }}
-          {{ customerDetails.address.city }}
-          {{ customerDetails.address.postcode }}
-        </span>
-      </div>
+    <div class="mx-2 my-4">
+      <CustomerDetails :minimised="minimised" :customerDetails="customerDetails" />
     </div>
   </v-card>
 </template>
-
-<script>
-//import { mapActions } from 'vuex'
-
-export default {
-  //props: {
-  //	customerDetails: {
-  //		type: Object,
-  //		required: true
-  //	}
-  //},
-  //data() {
-  //	return {
-  //		minimised: true
-  //	}
-  //},
-  computed: {},
-  created() {
-    //console.log(this.$props.table)
-  },
-  methods: {
-    // ...mapGetters('order', ['getCreateOrderForm']),
-    //...mapActions('order', ['updateForm']),
-    //updateInput(fieldName, value) {
-    //	const updatedForm = { section: 'customerDetails', fieldName, value }
-    //	this.updateForm(updatedForm)
-    //}
-  }
-}
-</script>
 
 <style lang="stylus" scoped>
 .customer-details-form-section-container

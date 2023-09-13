@@ -1,4 +1,6 @@
 <script setup>
+import ProductsDetails from '@/components/common/ProductsDetails.vue'
+
 import { ref } from 'vue'
 import { useOrderStore } from '@/stores/order'
 
@@ -57,7 +59,7 @@ const updateSelected = (productNumber) => {
 
 <template>
   <v-card color="#dbd9d9" class="order-card" outlined>
-    <div class="order-title mt-2">
+    <div class="order-title mt-2 mx-1">
       <v-btn
         class="d-flex justify-space-between text-body-2"
         depressed
@@ -85,7 +87,7 @@ const updateSelected = (productNumber) => {
             <div>
               <v-expand-transition v-for="(product, i) in productsDetails.products" :key="i" appear>
                 <v-card class="pl-3 pr-3 mt-2 mb-2 rounded-lg tertiary">
-                  <v-container>
+                  <v-container class="pl-6 pr-6">
                     <div class="card-title-container">
                       <v-card-title class="product-title pl-0 pb-5">
                         Product {{ i + 1 }}
@@ -152,45 +154,8 @@ const updateSelected = (productNumber) => {
       </v-row>
     </div>
 
-    <div
-      v-show="minimised"
-      class="products-details-form-section-summary-container mx-2 my-4 text-caption"
-    >
-      <div v-for="(product, i) in productsDetails.products" :key="i">
-        <div v-show="productsDetails.products[i].selected.length > 0" class="ml-4 mb-4">
-          <v-divider v-show="i !== 0" />
-          <div v-show="product.length !== 0" class="my-4">
-            <div class="d-flex justify-space-between mb-1">
-              <span class="body-2"> Product {{ i + 1 }} </span>
-              <span class="body-2 font-weight-light mr-2">
-                £{{ productsDetails.products[i].price }}
-              </span>
-            </div>
-
-            <div class="d-flex flex-wrap">
-              <div class="d-flex flex-wrap" style="width: 100%">
-                <div
-                  v-for="(selectedProduct, j) in product.selected"
-                  :key="j"
-                  class="products-details-form-section-summary caption"
-                >
-                  <span>{{ selectedProduct.name }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <v-divider />
-        </div>
-      </div>
-      <div v-show="productsDetails.totalCost !== 0">
-        <div class="d-flex flex-row-reverse body-2 mr-2 mt-4">
-          <span> Products Total: £{{ productsDetails.totalCost }} </span>
-        </div>
-      </div>
-
-      <div v-show="productsDetails.products[0].selected.length === 0">
-        <span class="body-2 ml-2">Select products.</span>
-      </div>
+    <div class="mx-2 my-4 text-caption">
+      <ProductsDetails :minimised="minimised" :productsDetails="productsDetails" />
     </div>
   </v-card>
 </template>
